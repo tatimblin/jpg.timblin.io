@@ -1,41 +1,39 @@
 <template>
   <div class="container">
     <div>
-      <logo />
       <h1 class="title">
         jpg.timblin.io
       </h1>
       <h2 class="subtitle">
         Photo Gallery
       </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <ul>
+        <li v-for="post in posts" :key="post.date">
+          <nuxt-link :to="post._path">
+            {{ post.title }}
+          </nuxt-link>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
+  layout: 'default',
+  data() {
+    // Using webpacks context to gather all files from a folder
+    const context = require.context('~/content/collections/', false, /\.json$/);
+    const posts = context.keys().map(key => ({
+      ...context(key),
+      _path: `/collection/${key.replace('.json', '').replace('./', '')}`
+    })).sort(function(a, b) {
+      var dateA = new Date(a.date), dateB = new Date(b.date);
+      return dateA - dateB;
+    });
+    return { posts };
   }
-}
+};
 </script>
 
 <style lang="scss">
