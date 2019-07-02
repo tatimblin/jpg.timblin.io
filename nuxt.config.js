@@ -1,4 +1,9 @@
+const glob  = require('glob');
+const path = require('path');
 
+const dynamicRoutes = getDynamicPaths({
+  '/collection': 'collections/*.json'
+})
 export default {
   mode: 'universal',
   /*
@@ -19,11 +24,12 @@ export default {
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
-  /*
-  ** Global CSS
-  */
-  css: [
-  ],
+  router: {
+    middleware: 'index'
+  },
+  generate: {
+    routes: dynamicRoutes,
+  },
   /*
   ** Plugins to load before mounting the App
   */
@@ -36,7 +42,13 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: [
+      './assets/sass/main.scss',
+    ],
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -53,4 +65,19 @@ export default {
     extend(config, ctx) {
     }
   }
+}
+
+/**
+ * Create an array of URLs from a list of files
+ * @param {*} urlFilepathTable
+ */
+function getDynamicPaths(urlFilepathTable) {
+  return [].concat(
+    ...Object.keys(urlFilepathTable).map(url => {
+      var filepathGlob = urlFilepathTable[url];
+      return glob
+        .sync(filepathGlob, { cwd: 'content' })
+        .map(filepath => `${url}/${path.basename(filepath, '.json')}`);
+    })
+  );
 }

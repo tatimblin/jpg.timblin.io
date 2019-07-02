@@ -1,4 +1,5 @@
-# jpg.timblin.io
+# jpg.timblin.io 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/25f3ba15-36f2-49c0-9de3-20b863e1840e/deploy-status)](https://app.netlify.com/sites/musing-pike-94079d/deploys)
 
 > Photo Gallery
 
