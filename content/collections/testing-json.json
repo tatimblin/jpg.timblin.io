@@ -1,0 +1,16 @@
+{
+  "layout": "collection",
+  "title": "Testing json",
+  "date": "2019-07-03T20:09:23.645Z",
+  "description": "This should be json",
+  "facts": [
+    {
+      "fact": "Json"
+    }
+  ],
+  "gallery": [
+    {
+      "image": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg"
+    }
+  ]
+}
