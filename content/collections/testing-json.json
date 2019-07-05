@@ -2,15 +2,28 @@
   "layout": "collection",
   "title": "Testing json",
   "date": "2019-07-03T20:09:23.645Z",
-  "description": "This should be json",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo, quibusdam vel voluptates quas eius quaerat quidem non corrupti ab placeat ex! Dolor soluta alias tempore neque illum quia dolorem.",
   "facts": [
-    {
-      "fact": "Json"
-    }
+    "Json",
+    "Camera",
+    "United States"
   ],
   "gallery": [
     {
-      "image": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg"
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
     }
   ]
 }

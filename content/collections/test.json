@@ -1,5 +1,25 @@
 {
-  "title": "Tristan's Birthday",
-  "date": "2018-06-11T00:00:00-04:00",
-  "body": "And he graduated later that week"
+  "layout": "collection",
+  "title": "Tristans B-day",
+  "date": "2019-06-11T20:09:23.645Z",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo, quibusdam vel voluptates quas eius quaerat quidem non corrupti ab placeat ex! Dolor soluta alias tempore neque illum quia dolorem.",
+  "facts": [
+    "West Virginia",
+    "DSLR Camera",
+    "United States"
+  ],
+  "gallery": [
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of another flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of another flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of another flower"
+    }
+  ]
 }

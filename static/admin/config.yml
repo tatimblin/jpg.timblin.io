@@ -22,10 +22,9 @@ collections:
       - label: "Facts"
         name: "facts"
         widget: "list"
-        fields:
-          - {label: "Fact", name: "fact", widget: "string"}
       - label: "Gallery"
         name: "gallery"
         widget: "list"
         fields: 
-          - {label: "Image", name: "image", widget: "image"}
+          - {label: "Image", name: "url", widget: "image"}
+          - {label: "Description", name: "alt", widget: "string"}

@@ -1,4 +1,21 @@
 <template>
+  <div class="container">
+    <div>
+      <h1 class="title">
+        jpg.timblin.io
+      </h1>
+      <h2 class="subtitle">
+        Photo Gallery
+      </h2>
+      <ul>
+        <li v-for="post in posts" :key="post.date">
+          <nuxt-link :to="post._path">
+            {{ post.title }}
+          </nuxt-link>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -15,10 +32,6 @@ export default {
       return dateA - dateB;
     });
     return { posts };
-  },
-  created() {
-    // redirect to most recent post
-    this.$router.push(this.posts[0]._path)
   },
   mounted() {
     const netlifyIdentityWidget = document.createElement('script');
