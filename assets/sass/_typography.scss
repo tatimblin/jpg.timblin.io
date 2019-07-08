@@ -1,0 +1,95 @@
+// ***
+// Type scale
+// ***
+
+$base-line-height: 1.125em;
+
+$type-settings: (
+  -1: (
+    font-size: calc(0.618em + 0.375vw),
+    line-height: $base-line-height + 0.5em
+  ),
+  0: (
+    font-size: calc(1em + 0.375vw),
+    line-height: $base-line-height + 0.375em
+  ),
+  1: (
+    font-size: calc(1.618em + 0.375vw),
+    line-height: $base-line-height + 0.25em
+  ),
+  2: (
+    font-size: calc(2.618em + 0.375vw),
+    line-height: $base-line-height
+  ),
+  3: (
+    font-size: calc(4.236em + 0.375vw),
+    line-height: $base-line-height
+  ),
+  4: (
+    font-size: calc(6.854em + 0.375vw),
+    line-height: $base-line-height
+  )
+);
+
+@function type-scale($level) {
+  @return map-get(
+    map-get($type-settings, $level), 'font-size');
+}
+
+@function line-height($level) {
+  @return map-get(
+    map-get($type-settings, $level), 'line-height');
+}
+
+@mixin type-setting($level) {
+  font-size: type-scale($level);
+  line-height: line-height($level);
+}
+
+
+// ***
+// Typography
+// ***
+
+@mixin base
+{
+  color: $text;
+}
+
+@mixin lead {
+  @include base;
+  @include type-setting(3);
+
+  margin-bottom: $spacing;
+  font-family: 'Eb Garamond', serif;
+  font-weight: 400;
+}
+
+@mixin brow {
+  @include base;
+  @include type-setting(-1);
+
+  margin-bottom: $spacing/2;
+  color: $gray400;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.125em;
+}
+
+@mixin rib {
+  @include base;
+  @include type-setting(-1);
+
+  margin-bottom: $spacing/3;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.0625em;
+}
+
+@mixin body {
+  @include base;
+  @include type-setting(0);
+
+  font-family: 'DM Sans', sans-serif;
+}

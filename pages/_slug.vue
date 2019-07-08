@@ -20,9 +20,18 @@ export default {
     IntroSection,
     ImageGallery
   },
+  mounted () {
+    this.$triggerNextPage(this.nextPage)
+  },
   async asyncData({ params }) {
     let post = await import('~/content/collections/' + params.slug + '.json')
     return post
+  },
+  methods: {
+    nextPage () {
+      console.log('callback function fired!')
+      this.$router.push('404')
+    }
   }
 };
 </script>

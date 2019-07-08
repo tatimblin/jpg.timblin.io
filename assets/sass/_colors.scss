@@ -1,0 +1,24 @@
+// ***
+// Default colors
+// ***
+
+$white: #fff;
+$black: #000;
+
+$gray50: lighten($black, 95%);
+$gray100: lighten($black, 90%);
+$gray200: lighten($black, 80%);
+$gray300: lighten($black, 70%);
+$gray400: lighten($black, 60%);
+$gray500: lighten($black, 50%);
+$gray600: lighten($black, 40%);
+$gray700: lighten($black, 30%);
+$gray800: lighten($black, 20%);
+$gray900: lighten($black, 10%);
+
+$text: $black;
+
+
+// ***
+// Brand colors
+// ***

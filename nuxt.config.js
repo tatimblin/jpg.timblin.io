@@ -20,6 +20,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  css: [
+    'assets/sass/global/main.scss'
+  ],
   /*
   ** Customize the progress-bar color
   */
@@ -34,6 +37,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/next-page.client.js'
   ],
   /*
   ** Nuxt.js modules
@@ -46,7 +50,7 @@ export default {
   ],
   styleResources: {
     scss: [
-      './assets/sass/main.scss',
+      './assets/sass/variables.scss',
     ],
   },
   /*

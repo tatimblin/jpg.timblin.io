@@ -16,11 +16,7 @@ export default {
     });
     return { posts };
   },
-  created() {
-    // redirect to most recent post
-    this.$router.push(this.posts[0]._path)
-  },
-  mounted() {
+  mounted () {
     const netlifyIdentityWidget = document.createElement('script');
     netlifyIdentityWidget.setAttribute('src', 'https://identity.netlify.com/v1/netlify-identity-widget.js');
     document.head.appendChild(netlifyIdentityWidget);
