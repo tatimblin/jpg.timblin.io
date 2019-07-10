@@ -28,7 +28,10 @@ export default {
   */
   loading: { color: '#fff' },
   router: {
-    middleware: 'index'
+    middleware: 'index',
+    scrollBehavior () {
+      return { x: 0, y: 0 }
+    }
   },
   generate: {
     routes: dynamicRoutes,

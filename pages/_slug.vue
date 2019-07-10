@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import IntroSection from '~/components/Collection/IntroSection'
 import ImageGallery from '~/components/Collection/ImageGallery'
 
@@ -29,10 +30,12 @@ export default {
   },
   methods: {
     nextPage () {
-      console.log('callback function fired!')
-      this.$router.push('404')
+      this.$router.push(this.getNextPage)
     }
-  }
+  },
+  computed: {
+    ...mapGetters(['getNextPage'])
+  },
 };
 </script>
 
