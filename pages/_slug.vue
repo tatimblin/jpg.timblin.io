@@ -3,14 +3,21 @@
     <div class="Collection-hero">
       <intro-section v-bind="{title, description, date, facts}"></intro-section>
     </div>
-    <div class="Collection-body">
-      <image-gallery :gallery="gallery"></image-gallery>
-    </div>
+    <transition
+      v-bind:css="false"
+      @enter="enter"
+      appear
+    >
+      <div class="Collection-body">
+        <image-gallery :gallery="gallery"></image-gallery>
+      </div>
+    </transition>
   </main>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import TweenMax from 'gsap'
 import IntroSection from '~/components/Collection/IntroSection'
 import ImageGallery from '~/components/Collection/ImageGallery'
 
@@ -31,7 +38,16 @@ export default {
   methods: {
     nextPage () {
       this.$router.push(this.getNextPage)
-    }
+    },
+    enter: function (el, done) {
+			TweenMax.from(el, 1.5, {
+        opacity: 0,
+        display: 'none',
+        ease:Power3.easeOut,
+        delay: 2,
+				onComplete: done
+      });
+    },
   },
   computed: {
     ...mapGetters(['getNextPage'])
