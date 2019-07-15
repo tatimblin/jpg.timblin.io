@@ -2,7 +2,7 @@ const glob  = require('glob');
 const path = require('path');
 
 const dynamicRoutes = getDynamicPaths({
-  '/collection': 'collections/*.json'
+  '': 'collections/*.json'
 })
 export default {
   mode: 'universal',
