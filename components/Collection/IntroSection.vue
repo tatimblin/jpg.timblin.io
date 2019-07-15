@@ -41,14 +41,14 @@ export default {
       opacity: 0,
       x: -10,
       ease: Power3.easeOut,
-      delay: 1
-    });
+      delay: 1.2
+    })
     TweenMax.staggerFrom('.IntroSection-fact', 1.25, {
       opacity: 0,
       x: -15,
       ease: Power3.easeOut,
-      delay: 3
-    }, 0.25);
+      delay: 1.5
+    }, 0.25)
   },
   methods: {
     enterHeadline: function (el, done) {
@@ -58,7 +58,7 @@ export default {
       }
 			TweenMax.staggerFrom(this.splitHeadline.lines, 1.2, {
         y: 110,
-        delay: 1.1,
+        delay: 0.5,
         ease: Power3.easeOut,
 				onComplete: done
       }, 0.3);
@@ -69,12 +69,12 @@ export default {
         opacity: 0,
         y: 10,
         ease: Power3.easeOut,
-        delay: 1.8,
+        delay: .8,
 				onComplete: done
       }, 0.22);
     },
     afterEnter: function () {
-      //this.splitHeadline.revert()
+      this.splitHeadline.revert()
     },
     afterEnterBody: function () {
       this.splitSubline.revert()
@@ -82,7 +82,7 @@ export default {
   },
   filters: {
     moment (date) {
-      return moment(date).startOf('day').fromNow()
+      return moment(date).format('MMMM YYYY')
     }
   }
 }
@@ -104,6 +104,8 @@ export default {
   {
     @include lead;
 
+    margin-bottom: 20px;
+    padding-bottom: 10px;
     font-kerning: none;
     overflow: hidden;
   }
@@ -130,4 +132,3 @@ export default {
   }
 }
 </style>
-

@@ -23,7 +23,6 @@ import ImageGallery from '~/components/Collection/ImageGallery'
 
 export default {
   layout: 'default',
-  transition: 'fade',
   components: {
     IntroSection,
     ImageGallery
