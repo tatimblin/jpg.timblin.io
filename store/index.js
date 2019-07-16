@@ -17,6 +17,7 @@ const createStore = () => {
     },
     getters: {
       getNextPage: state => state.nextCollection,
+      getFirstPage: state => state.collections[0]._path,
     },
     mutations: {
       updatePage(state, pageName) {
