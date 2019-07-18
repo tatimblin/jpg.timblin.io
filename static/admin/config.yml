@@ -19,6 +19,9 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "markdown"}
+      - {label: "Region", name: "region", widget: "string"}
+      - {label: "Camera", name: "camera", widget: "string"}
+      - {label: "Style", name: "style", widget: "string"}
       - label: "Facts"
         name: "facts"
         widget: "list"

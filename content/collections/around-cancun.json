@@ -1,0 +1,33 @@
+{
+  "layout": "collection",
+  "title": "Exploring around Cancùn with some friends",
+  "date": "2019-07-03T20:09:23.645Z",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo, quibusdam vel voluptates quas eius quaerat quidem non corrupti ab placeat ex! Dolor soluta alias tempore neque illum quia dolorem.",
+  "region": "Quintana Roo",
+  "camera": "Google Pixel 2",
+  "style": "Stylized",
+  "facts": [
+    "Quintana Roo",
+    "Spring 2018",
+    "Google Pixel 2",
+    "60mm Moment Lens"
+  ],
+  "gallery": [
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    }
+  ]
+}

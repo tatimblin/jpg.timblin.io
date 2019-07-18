@@ -1,7 +1,7 @@
 <template>
   <main class="Collection">
     <div class="Collection-hero">
-      <intro-section v-bind="{title, description, date, facts}"></intro-section>
+      <intro-section v-bind="{title, description, date, region, camera, style, facts}"></intro-section>
     </div>
     <transition
       v-bind:css="false"

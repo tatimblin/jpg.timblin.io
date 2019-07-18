@@ -1,29 +1,28 @@
 {
   "layout": "collection",
-  "title": "Testing json",
-  "date": "2019-07-03T20:09:23.645Z",
+  "title": "A hike up Appalachia to McAfee Knob",
+  "date": "2018-07-28T20:09:23.645Z",
   "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo, quibusdam vel voluptates quas eius quaerat quidem non corrupti ab placeat ex! Dolor soluta alias tempore neque illum quia dolorem.",
+  "region": "Virginia",
+  "camera": "2001 Canon Rebel",
+  "style": "Nature",
   "facts": [
-    "Json",
-    "Camera",
-    "United States"
+    "Virginia",
+    "Appalachian Mountains",
+    "2001 Canon Rebel"
   ],
   "gallery": [
     {
       "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
-      "alt": "Picture of a flower"
+      "alt": "Picture of another flower"
     },
     {
       "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
-      "alt": "Picture of a flower"
+      "alt": "Picture of another flower"
     },
     {
       "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
-      "alt": "Picture of a flower"
-    },
-    {
-      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
-      "alt": "Picture of a flower"
+      "alt": "Picture of another flower"
     }
   ]
 }

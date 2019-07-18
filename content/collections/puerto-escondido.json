@@ -1,0 +1,32 @@
+{
+  "layout": "collection",
+  "title": "Testing json",
+  "date": "2019-04-01T17:09:23.645Z",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo, quibusdam vel voluptates quas eius quaerat quidem non corrupti ab placeat ex! Dolor soluta alias tempore neque illum quia dolorem.",
+  "region": "Oaxaca",
+  "camera": "Google Pixel 2",
+  "style": "Warm",
+  "facts": [
+    "Json",
+    "Camera",
+    "United States"
+  ],
+  "gallery": [
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    }
+  ]
+}

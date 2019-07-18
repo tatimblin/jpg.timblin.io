@@ -20,6 +20,9 @@
       <p class="IntroSection-desc">{{ description }}</p>
     </transition>
     <ul class="IntroSection-facts">
+      <li class="IntroSection-fact">{{ region }}</li>
+      <li class="IntroSection-fact">{{ camera }}</li>
+      <li class="IntroSection-fact">{{ style }}</li>
       <li class="IntroSection-fact"
         v-for="fact in facts"
         :key="fact"
@@ -35,7 +38,7 @@ import TweenMax from 'gsap';
 import moment from 'moment'
 
 export default {
-  props: ['title', 'description', 'date', 'facts'],
+  props: ['title', 'description', 'date', 'region', 'camera', 'style', 'facts'],
   mounted () {
     TweenMax.from('.IntroSection-subtext', .5, {
       opacity: 0,

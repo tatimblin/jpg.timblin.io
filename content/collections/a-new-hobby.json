@@ -1,0 +1,20 @@
+{
+  "layout": "collection",
+  "title": "Finding a new hobby",
+  "date": "2017-08-26T20:09:23.645Z",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo, quibusdam vel voluptates quas eius quaerat quidem non corrupti ab placeat ex! Dolor soluta alias tempore neque illum quia dolorem.",
+  "region": "DC",
+  "camera": "2001 Canon Rebel",
+  "style": "Nature",
+  "facts": [
+    "Washington, DC",
+    "Philadelphia, PA",
+    "2001 Canon Rebel"
+  ],
+  "gallery": [
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
+      "alt": "Picture of a flower"
+    }
+  ]
+}
