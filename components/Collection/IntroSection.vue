@@ -22,7 +22,7 @@
     <ul class="IntroSection-facts">
       <li class="IntroSection-fact">{{ region }}</li>
       <li class="IntroSection-fact">{{ camera }}</li>
-      <li class="IntroSection-fact">{{ style }}</li>
+      <li class="IntroSection-fact">{{ theme }}</li>
       <li class="IntroSection-fact"
         v-for="fact in facts"
         :key="fact"
@@ -38,7 +38,7 @@ import TweenMax from 'gsap';
 import moment from 'moment'
 
 export default {
-  props: ['title', 'description', 'date', 'region', 'camera', 'style', 'facts'],
+  props: ['title', 'description', 'date', 'region', 'camera', 'theme', 'facts'],
   mounted () {
     TweenMax.from('.IntroSection-subtext', .5, {
       opacity: 0,
@@ -50,8 +50,8 @@ export default {
       opacity: 0,
       x: -15,
       ease: Power3.easeOut,
-      delay: 1.5
-    }, 0.25)
+      delay: 2
+    }, 0.2)
   },
   methods: {
     enterHeadline: function (el, done) {
@@ -72,7 +72,7 @@ export default {
         opacity: 0,
         y: 10,
         ease: Power3.easeOut,
-        delay: .8,
+        delay: 1.75,
 				onComplete: done
       }, 0.22);
     },
@@ -108,8 +108,8 @@ export default {
     @include lead;
 
     margin-bottom: 20px;
-    padding-bottom: 10px;
     font-kerning: none;
+    line-height: 1.375em;
     overflow: hidden;
   }
 
