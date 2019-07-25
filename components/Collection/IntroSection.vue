@@ -1,7 +1,8 @@
 <template>
   <section class="IntroSection">
     <p class="IntroSection-subtext">
-      <time :datetime="date">{{ date | moment }}</time>
+      <!-- <time :datetime="collection.date">{{ collection.date | moment }}</time> -->
+      <span @click="previewPageData(true)">click</span>
     </p>
     <transition
       v-bind:css="false"
@@ -9,7 +10,7 @@
       @after-enter="afterEnter"
       appear
     >
-      <h1 class="IntroSection-title">{{ title }}</h1>
+      <h1 class="IntroSection-title">{{ getPageData.title }}</h1>
     </transition>
     <transition
       v-bind:css="false"
@@ -17,9 +18,9 @@
       @after-enter="afterEnterBody"
       appear
     >
-      <p class="IntroSection-desc">{{ description }}</p>
+      <p class="IntroSection-desc">{{ getPageData.description }}</p>
     </transition>
-    <ul class="IntroSection-facts">
+    <!-- <ul class="IntroSection-facts">
       <li class="IntroSection-fact">{{ region }}</li>
       <li class="IntroSection-fact">{{ camera }}</li>
       <li class="IntroSection-fact">{{ theme }}</li>
@@ -29,17 +30,21 @@
       >
         {{ fact }}
       </li>
-    </ul>
+    </ul> -->
   </section>
 </template>
 
 <script>
-import TweenMax from 'gsap';
+import Vue from 'vue'
+import { mapGetters } from 'vuex'
+import TweenMax from 'gsap'
 import moment from 'moment'
 
 export default {
-  props: ['title', 'description', 'date', 'region', 'camera', 'theme', 'facts'],
   mounted () {
+    // trigger to preview next page's data
+    this.$previewPageData(this.previewPageData)
+    // simpler animations
     TweenMax.from('.IntroSection-subtext', .5, {
       opacity: 0,
       x: -10,
@@ -54,6 +59,9 @@ export default {
     }, 0.2)
   },
   methods: {
+    previewPageData (preview) {
+      this.$store.commit('previewPageData', preview)
+    },
     enterHeadline: function (el, done) {
       this.splitHeadline = new SplitText(".IntroSection-title", {type: "lines"});
       if (this.splitHeadline.lines.length > 1) {
@@ -86,14 +94,18 @@ export default {
   filters: {
     moment (date) {
       return moment(date).format('MMMM YYYY')
-    }
-  }
+    },
+  },
+  computed: {
+    ...mapGetters(['getPageData']),
+  },
 }
 </script>
 
 <style lang="scss">
 .IntroSection
 {
+  position: fixed;
   width: 100%;
   max-width: 650px;
   margin: 0 $spacing/2;

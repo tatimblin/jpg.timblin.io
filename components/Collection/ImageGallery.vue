@@ -53,7 +53,8 @@ export default {
 
 	&-img
 	{
-		width: calc(100% - 30px);
+		max-width: calc(100% - 30px);
+		max-height: calc(100vh - 30px);
 	}
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <main class="Collection">
     <div class="Collection-hero">
-      <intro-section v-bind="{title, description, date, region, camera, theme, facts}"></intro-section>
+      <intro-section></intro-section>
     </div>
     <transition
       v-bind:css="false"
@@ -9,8 +9,10 @@
       appear
     >
       <div class="Collection-body">
-        <image-gallery :gallery="gallery"></image-gallery>
-        <next-page>Next Page!</next-page>
+        <div class="Collection-images">
+          <image-gallery :gallery="gallery"></image-gallery>
+        </div>
+        <next-page></next-page>
       </div>
     </transition>
   </main>
@@ -35,11 +37,11 @@ export default {
   },
   methods: {
     enter: function (el, done) {
-			TweenMax.from(el, 1.5, {
+			TweenMax.from(el, 1, {
         opacity: 0,
         display: 'none',
         ease:Power3.easeOut,
-        delay: 2,
+        delay: 2.5,
 				onComplete: done
       });
     },
@@ -59,7 +61,7 @@ export default {
 		height: 100vh;
 	}
 	
-	&-body
+	&-images
 	{
 		position: relative;
 		max-width: 800px;

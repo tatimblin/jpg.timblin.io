@@ -40,7 +40,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/next-page.client.js'
+    '~/plugins/next-page.client.js',
+    '~/plugins/preview-page.client.js'
   ],
   /*
   ** Nuxt.js modules

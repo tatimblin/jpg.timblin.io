@@ -1,6 +1,5 @@
 <template>
   <div class="NextPage">
-    <slot></slot>
   </div>
 </template>
 
@@ -21,3 +20,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.NextPage
+{
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+</style>

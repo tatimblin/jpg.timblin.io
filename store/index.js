@@ -1,36 +1,58 @@
 import Vuex from 'vuex'
+import Vue from 'vue'
 
 const createStore = () => {
   return new Vuex.Store({
     state() {
       const context = require.context('~/content/collections/', false, /\.json$/);
       const collections = context.keys().map(key => ({
+        ...context(key),
         _path: `${key.replace('.json', '').replace('./', '')}`
       })).sort(function(a, b) {
         var dateA = new Date(a.date), dateB = new Date(b.date);
         return dateA - dateB;
       });
       return {
-        collections, 
-        nextCollection: ''
+        collections,
+        currentIndex: 0,
+        nextIndex: 0,
+        pageData: {}
       }
     },
     getters: {
-      getNextPage: state => state.nextCollection,
       getFirstPage: state => state.collections[0]._path,
+      getNextPage: state => state.collections[state.nextIndex]._path,
+      getPageData: state => state.pageData,
     },
     mutations: {
       updatePage(state, pageName) {
         // Get the index of the current page
-        let currentCollection = state.collections.findIndex(x => x._path === pageName);
+        let index = state.collections.findIndex(x => x._path === pageName);
+        state.currentIndex = index
+
+        // Initialize pageData
+        state.pageData = state.collections[index]
+
         // Update index to the next page
-        if (currentCollection === state.collections.length - 1) {
-          currentCollection = 0;
+        if (index === state.collections.length - 1) {
+          index = 0;
         } else {
-          currentCollection = currentCollection + 1;
+          index = index + 1;
         }
-        // Get the slug of the next page
-        state.nextCollection = state.collections[currentCollection]._path;
+        state.nextIndex = index
+      },
+      previewPageData(state, preview) {
+        let data = state.collections[state.currentIndex]
+        if (preview) {
+          //state.pageData = state.collections[state.nextIndex]
+          data = state.collections[state.nextIndex]
+        }
+        
+        //state.pageData = Object.assign({}, state.pageData, data)
+        state.pageData = data
+        Vue.set(state.pageData, 'title', preview)
+        Vue.set(state.pageData, 'description', 'goodbye')
+        console.log(state.pageData)
       },
     },
   })
