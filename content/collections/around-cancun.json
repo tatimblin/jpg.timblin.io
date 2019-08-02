@@ -1,33 +1,33 @@
 {
-  "layout": "collection",
-  "title": "Exploring around Cancùn with some friends",
-  "date": "2019-07-03T20:09:23.645Z",
-  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo, quibusdam vel voluptates quas eius quaerat quidem non corrupti ab placeat ex! Dolor soluta alias tempore neque illum quia dolorem.",
-  "region": "Quintana Roo",
   "camera": "Google Pixel 2",
-  "theme": "Stylized",
   "facts": [
     "Quintana Roo",
     "Spring 2018",
     "Google Pixel 2",
     "60mm Moment Lens"
   ],
+  "theme": "Stylized",
+  "layout": "collection",
+  "date": "2019-07-03T20:09:23.645Z",
   "gallery": [
     {
-      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
-      "alt": "Picture of a flower"
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1564769825/cancun/nick-beach_zwbq2j.jpg",
+      "alt": "Nick at the beach"
     },
     {
-      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
-      "alt": "Picture of a flower"
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1564769826/cancun/sky_qean2j.jpg",
+      "alt": "Purple storm"
     },
     {
-      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
-      "alt": "Picture of a flower"
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1564769826/cancun/ocean_jjvyez.jpg",
+      "alt": "ittie bittie wave"
     },
     {
-      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
-      "alt": "Picture of a flower"
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1564769743/cancun/mirror_agi8qe.jpg",
+      "alt": "The bus home"
     }
-  ]
+  ],
+  "region": "Quintana Roo",
+  "title": "Exploring around Cancùn with some friends",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nemo, quibusdam vel voluptates quas eius quaerat quidem non corrupti ab placeat ex! Dolor soluta alias tempore neque illum quia dolorem."
 }
