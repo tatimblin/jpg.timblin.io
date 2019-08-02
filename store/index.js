@@ -20,8 +20,8 @@ const createStore = () => {
       }
     },
     getters: {
-      getFirstPage: state => state.collections[0]._path,
-      getNextPage: state => state.collections[state.nextIndex]._path,
+      getFirstPage: state => '/' + state.collections[0]._path,
+      getNextPage: state => '/' + state.collections[state.nextIndex]._path,
       getPageData: state => state.pageData,
     },
     mutations: {
