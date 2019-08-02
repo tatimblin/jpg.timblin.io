@@ -1,8 +1,7 @@
 <template>
   <section class="IntroSection">
     <p class="IntroSection-subtext">
-      <!-- <time :datetime="collection.date">{{ collection.date | moment }}</time> -->
-      <span @click="previewPageData(true)">click</span>
+      <time :datetime="getPageData.date">{{ getPageData.date | moment }}</time>
     </p>
     <transition
       v-bind:css="false"
@@ -20,17 +19,17 @@
     >
       <p class="IntroSection-desc">{{ getPageData.description }}</p>
     </transition>
-    <!-- <ul class="IntroSection-facts">
-      <li class="IntroSection-fact">{{ region }}</li>
-      <li class="IntroSection-fact">{{ camera }}</li>
-      <li class="IntroSection-fact">{{ theme }}</li>
+    <ul class="IntroSection-facts">
+      <li class="IntroSection-fact">{{ getPageData.region }}</li>
+      <li class="IntroSection-fact">{{ getPageData.camera }}</li>
+      <li class="IntroSection-fact">{{ getPageData.theme }}</li>
       <li class="IntroSection-fact"
-        v-for="fact in facts"
+        v-for="fact in getPageData.facts"
         :key="fact"
       >
         {{ fact }}
       </li>
-    </ul> -->
+    </ul>
   </section>
 </template>
 
@@ -42,8 +41,6 @@ import moment from 'moment'
 
 export default {
   mounted () {
-    // trigger to preview next page's data
-    this.$previewPageData(this.previewPageData)
     // simpler animations
     TweenMax.from('.IntroSection-subtext', .5, {
       opacity: 0,
@@ -59,9 +56,6 @@ export default {
     }, 0.2)
   },
   methods: {
-    previewPageData (preview) {
-      this.$store.commit('previewPageData', preview)
-    },
     enterHeadline: function (el, done) {
       this.splitHeadline = new SplitText(".IntroSection-title", {type: "lines"});
       if (this.splitHeadline.lines.length > 1) {

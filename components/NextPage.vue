@@ -24,7 +24,10 @@ export default {
 <style lang="scss">
 .NextPage
 {
+  position: relative;
   height: 100vh;
-  background-color: #f1f1f1;
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 75%, rgba(255,255,255,0) 100%);
+  z-index: 1;
 }
 </style>
