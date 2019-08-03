@@ -1,20 +1,32 @@
 {
-  "layout": "collection",
-  "title": "Seeing new form in an old city",
-  "date": "2017-11-05T17:09:23.645Z",
-  "description": "Focusing on the unique shapes in a city, I tried to see the streets I walked down everyday in a new way.",
-  "region": "Philadelphia",
   "camera": "2001 Canon Rebel",
-  "theme": "Urban",
   "facts": [
     "Architecture",
     "Abstract forms",
     "Design"
   ],
+  "theme": "Urban",
+  "layout": "collection",
+  "date": "2017-11-05T17:09:23.645Z",
   "gallery": [
     {
-      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1562183706/sample.jpg",
-      "alt": "Picture of a flower"
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1564799324/city-form/theater_drifhj.jpg",
+      "alt": "Crescent from a theater"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1564799323/city-form/auditorium_ry3z61.jpg",
+      "alt": "Curtis center auditorium"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1564799324/city-form/fieldhouse_wzdyxw.jpg",
+      "alt": "Field house lounge"
+    },
+    {
+      "url": "https://res.cloudinary.com/jpg-timblin-io/image/upload/v1564799325/city-form/bridge_qomwru.jpg",
+      "alt": "Delaware bridge"
     }
-  ]
+  ],
+  "region": "Philadelphia",
+  "title": "Seeing new form in an old city",
+  "description": "Focusing on the unique shapes in a city, I tried to see the streets I walked down everyday in a new way."
 }
