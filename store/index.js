@@ -10,7 +10,7 @@ const createStore = () => {
         _path: `${key.replace('.json', '').replace('./', '')}`
       })).sort(function(a, b) {
         var dateA = new Date(a.date), dateB = new Date(b.date);
-        return dateA - dateB;
+        return dateB - dateA;
       });
       return {
         collections,
