@@ -52,7 +52,7 @@ export default {
     bottom: 0;
     overflow: hidden;
 
-    @include query(small)
+    @include query(large)
     {
       overflow: visible;
     }

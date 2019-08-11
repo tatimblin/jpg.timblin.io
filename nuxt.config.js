@@ -17,10 +17,10 @@ export default {
       { hid: 'description', name: 'description', content: 'Quickly browse through my photography, sorted into collections over the years.' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
     script: [
-      { src: '/SplitText.min.js'}
+      { src: '/SplitText.min.js'},
     ]
   },
   css: [
