@@ -51,6 +51,11 @@ export default {
 		height: 100vh;
     bottom: 0;
     overflow: hidden;
+
+    @include query(small)
+    {
+      overflow: visible;
+    }
 	}
 
 	&-img
