@@ -3,7 +3,7 @@
 
 > A photo gallery of my personal photography, separated into collections.
 
-![Preview](https://i.imgur.com/zC2enkR.gifv)
+![Preview](https://i.imgur.com/zC2enkR.gif)
 
 ## Build Setup
 
