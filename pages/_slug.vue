@@ -1,5 +1,5 @@
 <template>
-  <main class="Collection">
+  <main class="Collection" itemscope itemtype="http://schema.org/Collection">
     <div class="Collection-hero">
       <intro-section></intro-section>
     </div>
@@ -11,6 +11,11 @@
       <div class="Collection-body">
         <div class="Collection-images">
           <image-gallery :gallery="gallery"></image-gallery>
+          <meta itemprop="author" content="tris timb">
+          <meta itemprop="collectionSize" :content="gallery.length">
+          <meta itemprop="isAccessibleForFree" content="true">
+          <meta itemprop="isFamilyFriendly" content="true">
+          <meta itemprop="encodingFormat" content="jpg">
         </div>
         <next-page></next-page>
       </div>

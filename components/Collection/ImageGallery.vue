@@ -7,6 +7,7 @@
     >
       <img
         class="ImageGallery-img"
+        itemprop="image"
         :style="imageOffset()"
         :src="image.url"
         :alt="image.alt"

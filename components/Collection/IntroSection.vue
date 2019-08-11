@@ -1,7 +1,7 @@
 <template>
   <section class="IntroSection">
     <p class="IntroSection-subtext">
-      <time :datetime="getPageData.date">{{ getPageData.date | moment }}</time>
+      <time :datetime="collection.date" itemprop="dateCreated">{{ collection.date | moment }}</time>
     </p>
     <transition
       v-bind:css="false"
@@ -9,7 +9,7 @@
       @after-enter="afterEnter"
       appear
     >
-      <h1 class="IntroSection-title">{{ getPageData.title }}</h1>
+      <h1 class="IntroSection-title" itemprop="name">{{ collection.title }}</h1>
     </transition>
     <transition
       v-bind:css="false"
@@ -17,14 +17,15 @@
       @after-enter="afterEnterBody"
       appear
     >
-      <p class="IntroSection-desc">{{ getPageData.description }}</p>
+      <p class="IntroSection-desc" itemprop="about">{{ collection.description }}</p>
     </transition>
     <ul class="IntroSection-facts">
-      <li class="IntroSection-fact">{{ getPageData.region }}</li>
-      <li class="IntroSection-fact">{{ getPageData.camera }}</li>
-      <li class="IntroSection-fact">{{ getPageData.theme }}</li>
+      <li class="IntroSection-fact" itemprop="contentLocation">{{ collection.region }}</li>
+      <li class="IntroSection-fact" itemprop="material">{{ collection.camera }}</li>
+      <li class="IntroSection-fact" itemprop="genre">{{ collection.theme }}</li>
       <li class="IntroSection-fact"
-        v-for="fact in getPageData.facts"
+        itemprop="keywords"
+        v-for="fact in collection.facts"
         :key="fact"
       >
         {{ fact }}
@@ -40,6 +41,14 @@ import TweenMax from 'gsap'
 import moment from 'moment'
 
 export default {
+  head () {
+    return {
+      title: `${this.collection.title} - photography by tris timb`,
+      meta: [
+        { hid: 'description', name: 'description', content: this.collection.description },
+      ],
+    }
+  },
   mounted () {
     // simpler animations
     TweenMax.from('.IntroSection-subtext', .5, {
@@ -91,7 +100,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['getPageData']),
+    ...mapGetters({'collection': 'getPageData'}),
   },
 }
 </script>
