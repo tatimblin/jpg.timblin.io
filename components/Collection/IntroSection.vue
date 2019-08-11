@@ -109,9 +109,20 @@ export default {
 .IntroSection
 {
   position: fixed;
-  width: 100%;
-  max-width: 650px;
   margin: 0 $spacing/2;
+  left: 0;
+
+  @include query(small)
+  {
+    width: map-get($breakpoints, small);
+    left: auto;
+  }
+
+  @include query(large)
+  {
+    width: map-get($breakpoints, medium);
+    left: auto;
+  }
 
   &-subtext
   {
@@ -125,7 +136,6 @@ export default {
     margin-bottom: 20px;
     font-kerning: none;
     line-height: 1.375em;
-    overflow: hidden;
   }
 
   &-splitParent

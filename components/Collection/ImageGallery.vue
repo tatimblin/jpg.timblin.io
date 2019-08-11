@@ -49,7 +49,8 @@ export default {
 		align-items: center;
 		width: 100%;
 		height: 100vh;
-		bottom: 0;
+    bottom: 0;
+    overflow: hidden;
 	}
 
 	&-img

@@ -1,6 +1,16 @@
 @import 'colors';
 @import 'typography';
+@import 'mixins';
 
+// Usage: @include query(small) {...}
+$breakpoints: (
+    xsmall: 30em, // 480px
+    small: 40em, //	640px
+	medium: 48em, // 768px
+	large: 62em, //	992px
+    xlarge: 87.5em, //1400px
+	xxlarge: 112.5rem // 1800px
+);
 $spacing: 30px;
 
 // Animation
