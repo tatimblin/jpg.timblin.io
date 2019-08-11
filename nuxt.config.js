@@ -53,7 +53,7 @@ export default {
   ],
   styleResources: {
     scss: [
-      './assets/sass/variables.scss',
+      './assets/sass/include.scss',
     ],
   },
   /*

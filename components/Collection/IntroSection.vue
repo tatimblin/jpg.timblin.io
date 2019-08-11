@@ -1,7 +1,7 @@
 <template>
   <section class="IntroSection">
     <p class="IntroSection-subtext">
-      <time :datetime="collection.date" itemprop="dateCreated">{{ collection.date | moment }}</time>
+      <time :datetime="collection.date" itemprop="dateCreated" v-if="collection.date">{{ collection.date | moment }}</time>
     </p>
     <transition
       v-bind:css="false"
@@ -9,7 +9,7 @@
       @after-enter="afterEnter"
       appear
     >
-      <h1 class="IntroSection-title" itemprop="name">{{ collection.title }}</h1>
+      <h1 class="IntroSection-title" itemprop="name" v-if="collection.title">{{ collection.title }}</h1>
     </transition>
     <transition
       v-bind:css="false"
@@ -17,14 +17,15 @@
       @after-enter="afterEnterBody"
       appear
     >
-      <p class="IntroSection-desc" itemprop="about">{{ collection.description }}</p>
+      <p class="IntroSection-desc" itemprop="about" v-if="collection.description">{{ collection.description }}</p>
     </transition>
     <ul class="IntroSection-facts">
-      <li class="IntroSection-fact" itemprop="contentLocation">{{ collection.region }}</li>
-      <li class="IntroSection-fact" itemprop="material">{{ collection.camera }}</li>
-      <li class="IntroSection-fact" itemprop="genre">{{ collection.theme }}</li>
+      <li class="IntroSection-fact" itemprop="contentLocation" v-if="collection.region">{{ collection.region }}</li>
+      <li class="IntroSection-fact" itemprop="material" v-if="collection.camera">{{ collection.camera }}</li>
+      <li class="IntroSection-fact" itemprop="genre" v-if="collection.theme">{{ collection.theme }}</li>
       <li class="IntroSection-fact"
         itemprop="keywords"
+        v-if="collection.facts"
         v-for="fact in collection.facts"
         :key="fact"
       >
@@ -151,7 +152,12 @@ export default {
   &-facts
   {
     margin: $spacing 0;
-    columns: 3;
+    columns: 2;
+
+    @include query(small)
+    {
+      columns: 3;
+    }
   }
 
   &-fact

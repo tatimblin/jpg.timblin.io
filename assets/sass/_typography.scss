@@ -51,6 +51,9 @@ $type-settings: (
 // Typography
 // ***
 
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
 @mixin base
 {
   color: $text;
@@ -62,29 +65,42 @@ $type-settings: (
 
   margin-bottom: $spacing;
   font-family: 'Eb Garamond', serif;
-  font-weight: 400;
+  font-weight: $font-weight-normal;
 }
 
 @mixin brow {
   @include base;
-  @include type-setting(-1);
+  @include type-setting(0);
 
   margin-bottom: $spacing/2;
-  color: $gray400;
+  color: $gray500;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   text-transform: uppercase;
   letter-spacing: 0.125em;
+
+  @include query(small)
+  {
+    color: $gray400;
+  }
 }
 
 @mixin rib {
   @include base;
-  @include type-setting(-1);
+  @include type-setting(0);
 
   margin-bottom: $spacing/3;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
+  color: $gray500;
+  font-weight: $font-weight-bold;
   letter-spacing: 0.0625em;
+
+  @include query(small)
+  {
+    @include type-setting(-1);
+
+    color: $gray400;
+  }
 }
 
 @mixin body {
