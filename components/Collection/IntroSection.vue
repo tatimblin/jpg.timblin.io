@@ -111,18 +111,17 @@ export default {
 {
   position: fixed;
   margin: 0 $spacing/2;
-  left: 0;
+  left: auto;
+  right: auto;
 
   @include query(small)
   {
     width: map-get($breakpoints, small);
-    left: auto;
   }
 
   @include query(large)
   {
     width: map-get($breakpoints, medium);
-    left: auto;
   }
 
   &-subtext

@@ -25,9 +25,9 @@ export default {
 .NextPage
 {
   position: relative;
-  height: 100vh;
+  height: 90vh;
   background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,1) 75%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 85%, rgba(255,255,255,0) 100%);
   z-index: 1;
 }
 </style>
