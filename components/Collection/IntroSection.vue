@@ -141,6 +141,7 @@ export default {
   &-splitParent
   {
     overflow: hidden;
+    box-sizing: border-box;
   }
 
   &-desc
