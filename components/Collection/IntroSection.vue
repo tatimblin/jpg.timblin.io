@@ -109,6 +109,7 @@ export default {
 <style lang="scss">
 .IntroSection
 {
+  width: 100%;
   margin: 0 $spacing/2;
   left: auto;
   right: auto;
