@@ -59,11 +59,14 @@ export default {
 {
 	&-hero
 	{
+    position: sticky;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		width: 100vw;
-		height: 100vh;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
 	}
 	
 	&-images

@@ -52,18 +52,18 @@ export default {
   },
   mounted () {
     // simpler animations
-    TweenMax.from('.IntroSection-subtext', .5, {
+    TweenMax.from('.IntroSection-subtext', .75, {
       opacity: 0,
       x: -10,
       ease: Power3.easeOut,
-      delay: 1.2
+      delay: 2.33
     })
-    TweenMax.staggerFrom('.IntroSection-fact', 1.25, {
+    TweenMax.staggerFrom('.IntroSection-fact', 2, {
       opacity: 0,
-      x: -15,
+      x: -5,
       ease: Power3.easeOut,
-      delay: 2
-    }, 0.2)
+      delay: 2.33
+    }, 0.15)
   },
   methods: {
     enterHeadline: function (el, done) {
@@ -71,22 +71,22 @@ export default {
       if (this.splitHeadline.lines.length > 1) {
         new SplitText(".IntroSection-title", { type: "lines", linesClass: "IntroSection-splitParent" });
       }
-			TweenMax.staggerFrom(this.splitHeadline.lines, 1.2, {
+			TweenMax.staggerFrom(this.splitHeadline.lines, 1, {
         y: 110,
-        delay: 0.5,
+        delay: 0.3,
         ease: Power3.easeOut,
 				onComplete: done
-      }, 0.3);
+      }, 0.15);
     },
     enterBody: function (el, done) {
       this.splitSubline = new SplitText(".IntroSection-desc", {type: "lines"});
-			TweenMax.staggerFrom(this.splitSubline.lines, 2.2, {
+			TweenMax.staggerFrom(this.splitSubline.lines, 1.33, {
         opacity: 0,
         y: 10,
         ease: Power3.easeOut,
-        delay: 1.75,
+        delay: 2,
 				onComplete: done
-      }, 0.22);
+      }, 0.2);
     },
     afterEnter: function () {
       this.splitHeadline.revert()
@@ -109,7 +109,6 @@ export default {
 <style lang="scss">
 .IntroSection
 {
-  position: fixed;
   margin: 0 $spacing/2;
   left: auto;
   right: auto;

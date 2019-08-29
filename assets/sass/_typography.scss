@@ -73,7 +73,7 @@ $font-weight-bold: 700;
   @include type-setting(0);
 
   margin-bottom: $spacing/2;
-  color: $gray500;
+  color: $gray600;
   font-family: 'DM Sans', sans-serif;
   font-weight: $font-weight-bold;
   text-transform: uppercase;
@@ -81,7 +81,7 @@ $font-weight-bold: 700;
 
   @include query(small)
   {
-    color: $gray400;
+    color: $gray700;
   }
 }
 
@@ -92,14 +92,14 @@ $font-weight-bold: 700;
   margin-bottom: $spacing/3;
   font-family: 'DM Sans', sans-serif;
   color: $gray600;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-normal;
   letter-spacing: 0.0625em;
 
   @include query(small)
   {
     @include type-setting(-1);
 
-    color: $gray500;
+    color: $gray800;
   }
 }
 
