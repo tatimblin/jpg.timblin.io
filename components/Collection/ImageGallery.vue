@@ -3,14 +3,14 @@
     <div
       class="ImageGallery-item"
       v-for="image in gallery"
-      :key="image.index"
+      :key="image.fields.file.url"
     >
       <img
         class="ImageGallery-img"
         itemprop="image"
         :style="imageOffset()"
-        :src="image.url"
-        :alt="image.alt"
+        :src="image.fields.file.url"
+        :alt="image.fields.title"
         ref="js-img"
       >
     </div>

@@ -1,7 +1,7 @@
 <template>
   <section class="IntroSection">
     <p class="IntroSection-subtext">
-      <time :datetime="collection.date" itemprop="dateCreated" v-if="collection.date">{{ collection.date | moment }}</time>
+      <time :datetime="date" itemprop="dateCreated" v-if="date">{{ date | moment }}</time>
     </p>
     <transition
       v-bind:css="false"
@@ -9,7 +9,7 @@
       @after-enter="afterEnter"
       appear
     >
-      <h1 class="IntroSection-title" itemprop="name" v-if="collection.title">{{ collection.title }}</h1>
+      <h1 class="IntroSection-title" itemprop="name" v-if="title">{{ title }}</h1>
     </transition>
     <transition
       v-bind:css="false"
@@ -17,16 +17,13 @@
       @after-enter="afterEnterBody"
       appear
     >
-      <p class="IntroSection-desc" itemprop="about" v-if="collection.description">{{ collection.description }}</p>
+      <p class="IntroSection-desc" itemprop="about" v-if="description">{{ description }}</p>
     </transition>
     <ul class="IntroSection-facts">
-      <li class="IntroSection-fact" itemprop="contentLocation" v-if="collection.region">{{ collection.region }}</li>
-      <li class="IntroSection-fact" itemprop="material" v-if="collection.camera">{{ collection.camera }}</li>
-      <li class="IntroSection-fact" itemprop="genre" v-if="collection.theme">{{ collection.theme }}</li>
       <li class="IntroSection-fact"
         itemprop="keywords"
-        v-if="collection.facts"
-        v-for="fact in collection.facts"
+        v-if="facts"
+        v-for="fact in facts"
         :key="fact"
       >
         {{ fact }}
@@ -37,16 +34,15 @@
 
 <script>
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import TweenMax from 'gsap'
 import moment from 'moment'
 
 export default {
   head () {
     return {
-      title: `${this.collection.title} - photography by tris timb`,
+      title: `${this.title} - photography by tris timb`,
       meta: [
-        { hid: 'description', name: 'description', content: this.collection.description },
+        { hid: 'description', name: 'description', content: this.description },
       ],
     }
   },
@@ -64,6 +60,20 @@ export default {
       ease: Power3.easeOut,
       delay: 2.33
     }, 0.15)
+  },
+  props: {
+    title: {
+      type: String,
+    },
+    date: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    facts: {
+      type: Array,
+    },
   },
   methods: {
     enterHeadline: function (el, done) {
@@ -99,9 +109,6 @@ export default {
     moment (date) {
       return moment(date).format('MMMM YYYY')
     },
-  },
-  computed: {
-    ...mapGetters({'collection': 'getPageData'}),
   },
 }
 </script>

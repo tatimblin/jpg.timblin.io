@@ -1,11 +1,23 @@
 const glob  = require('glob');
 const path = require('path');
 
-const dynamicRoutes = getDynamicPaths({
-  '': 'collections/*.json'
-})
+const config = require('./.contentful.json');
+const { createClient } = require('./plugins/contentful');
+const cdaClient = createClient(config);
+const cmaContentful = require('contentful-management');
+const cmaClient = cmaContentful.createClient({
+  space: config.CTF_SPACE_ID,
+  accessToken: config.CTF_CMA_ACCESS_TOKEN
+});
+
 export default {
   mode: 'universal',
+  env: {
+    CTF_SPACE_ID: config.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
+    CTF_PERSON_ID: config.CTF_PERSON_ID,
+    CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID
+  },
   /*
   ** Headers of the page
   */
@@ -34,7 +46,25 @@ export default {
     middleware: 'index'
   },
   generate: {
-    routes: dynamicRoutes,
+    routes () {
+      return Promise.all([
+        // get all blog posts
+        cdaClient.getEntries({
+          'content_type': config.CTF_BLOG_POST_TYPE_ID
+        }),
+        // get the blog post content type
+        cmaClient.getSpace(config.CTF_SPACE_ID)
+          .then(space => space.getContentType(config.CTF_BLOG_POST_TYPE_ID))
+      ])
+      .then(([entries, postType]) => {
+        return [
+          // map entries to URLs
+          ...entries.items.map(entry => `/${entry.fields.slug}`),
+          // map all possible tags to URLs
+          ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `/tags/${tag}`)
+        ]
+      })
+    }
   },
   /*
   ** Plugins to load before mounting the App
@@ -72,19 +102,4 @@ export default {
     extend(config, ctx) {
     }
   }
-}
-
-/**
- * Create an array of URLs from a list of files
- * @param {*} urlFilepathTable
- */
-function getDynamicPaths(urlFilepathTable) {
-  return [].concat(
-    ...Object.keys(urlFilepathTable).map(url => {
-      var filepathGlob = urlFilepathTable[url];
-      return glob
-        .sync(filepathGlob, { cwd: 'content' })
-        .map(filepath => `${url}/${path.basename(filepath, '.json')}`);
-    })
-  );
 }

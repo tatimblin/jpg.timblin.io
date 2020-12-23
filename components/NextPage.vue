@@ -1,22 +1,43 @@
 <template>
-  <div class="NextPage">
+  <div class="NextPage">{{ at }}
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { createClient } from '~/plugins/contentful.js'
+
+const client = createClient()
 
 export default {
+  props: {
+    at: {
+      type: String,
+    },
+  },
   mounted () {
-    this.$triggerNextPage(this.nextPage)
-  },
-  methods: {
-    nextPage () {
-      this.$router.push(this.getNextPage)
-    }
-  },
-  computed: {
-    ...mapGetters(['getNextPage'])
+    this.$triggerNextPage(() =>  {
+      client.getEntries({
+        'content_type': 'collection',
+        'order': '-fields.date',
+        'fields.date[lt]': this.at,
+        'limit': 1,
+      })
+      .then(entries => {
+        if (entries.total === 0) {
+          return client.getEntries({
+            'content_type': 'collection',
+            'order': '-fields.date',
+            'limit': 1,
+          }).then(first => {
+            return first
+          })
+        }
+        return entries
+      })
+      .then(entries => {
+        this.$router.push(entries.items[0].fields.slug)
+      })
+    })
   },
 };
 </script>

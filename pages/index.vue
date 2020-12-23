@@ -2,34 +2,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { createClient } from '~/plugins/contentful.js'
+const client = createClient()
 
 export default {
   layout: 'default',
-  mounted () {
-    // Redirect
-    this.$router.push(this.getFirstPage)
-
-    // Netlify CMS
-    const netlifyIdentityWidget = document.createElement('script')
-    netlifyIdentityWidget.setAttribute('src', 'https://identity.netlify.com/v1/netlify-identity-widget.js')
-    document.head.appendChild(netlifyIdentityWidget);
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', (user) => {
-        if (!user) {
-          window.netlifyIdentity.on('login', () => {
-            document.location.href = '/admin/'
-          });
-        }
-      });
-    }
-  },
-  computed: {
-    ...mapGetters(['getFirstPage'])
+  mounted() {
+    const slug = client.getEntries({
+      'content_type': 'collection',
+      'order': '-fields.date',
+      'limit': 1,
+    })
+    .then(entries => {
+      this.$router.push(entries.items[0].fields.slug)
+    })
   },
 };
 </script>
-
-<style lang="scss">
-
-</style>

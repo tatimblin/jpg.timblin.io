@@ -1,7 +1,12 @@
 <template>
-  <main class="Collection" itemscope itemtype="http://schema.org/Collection">
+  <main class="Collection">
     <div class="Collection-hero">
-      <intro-section></intro-section>
+      <intro-section
+        :title="post.fields.title"
+        :date="post.fields.date"
+        :description="post.fields.description"
+        :facts="post.fields.highlights"
+      />
     </div>
     <transition
       v-bind:css="false"
@@ -10,24 +15,22 @@
     >
       <div class="Collection-body">
         <div class="Collection-images">
-          <image-gallery :gallery="gallery"></image-gallery>
-          <meta itemprop="author" content="tris timb">
-          <meta itemprop="collectionSize" :content="gallery.length">
-          <meta itemprop="isAccessibleForFree" content="true">
-          <meta itemprop="isFamilyFriendly" content="true">
-          <meta itemprop="encodingFormat" content="jpg">
+          <image-gallery :gallery="post.fields.gallery"></image-gallery>
         </div>
-        <next-page></next-page>
+        <next-page :at="post.fields.date" />
       </div>
     </transition>
   </main>
 </template>
 
 <script>
+import { createClient } from '~/plugins/contentful.js'
 import TweenMax from 'gsap'
 import IntroSection from '~/components/Collection/IntroSection'
 import ImageGallery from '~/components/Collection/ImageGallery'
 import NextPage from '~/components/NextPage'
+
+const client = createClient()
 
 export default {
   layout: 'default',
@@ -36,9 +39,16 @@ export default {
     ImageGallery,
     NextPage
   },
-  async asyncData({ params }) {
-    let post = await import('~/content/collections/' + params.slug + '.json')
-    return post
+  asyncData ({ env, params }) {
+    return client.getEntries({
+      'content_type': env.CTF_BLOG_POST_TYPE_ID,
+      'fields.slug': params.slug
+    }).then(entries => {
+      return {
+        post: entries.items[0]
+      }
+    })
+    .catch(console.error)
   },
   methods: {
     enter: function (el, done) {
