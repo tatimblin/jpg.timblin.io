@@ -1,22 +1,17 @@
 const glob  = require('glob');
 const path = require('path');
 
-const config = require('./.contentful.json');
 const { createClient } = require('./plugins/contentful');
-const cdaClient = createClient(config);
+const cdaClient = createClient();
 const cmaContentful = require('contentful-management');
 const cmaClient = cmaContentful.createClient({
-  space: config.CTF_SPACE_ID,
-  accessToken: config.CTF_CMA_ACCESS_TOKEN
+  space: process.env.NUXT_ENV_CTF_SPACE_ID,
+  accessToken: process.env.NUXT_ENV_CTF_CMA_ACCESS_TOKEN
 });
 
 export default {
-  mode: 'universal',
-  env: {
-    CTF_SPACE_ID: config.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
-    CTF_PERSON_ID: config.CTF_PERSON_ID,
-    CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID
+  publicRuntimeConfig: {
+    postTypeID: process.env.NUXT_ENV_CTF_POST_TYPE_ID,
   },
   /*
   ** Headers of the page
@@ -50,11 +45,11 @@ export default {
       return Promise.all([
         // get all blog posts
         cdaClient.getEntries({
-          'content_type': config.CTF_BLOG_POST_TYPE_ID
+          'content_type': process.env.NUXT_ENV_CTF_POST_TYPE_ID
         }),
         // get the blog post content type
-        cmaClient.getSpace(config.CTF_SPACE_ID)
-          .then(space => space.getContentType(config.CTF_BLOG_POST_TYPE_ID))
+        cmaClient.getSpace(process.env.NUXT_ENV_CTF_SPACE_ID)
+          .then(space => space.getContentType(process.env.NUXT_ENV_CTF_POST_TYPE_ID))
       ])
       .then(([entries, postType]) => {
         return [

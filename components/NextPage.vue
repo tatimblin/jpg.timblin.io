@@ -1,6 +1,5 @@
 <template>
-  <div class="NextPage">{{ at }}
-  </div>
+  <div class="NextPage"></div>
 </template>
 
 <script>
@@ -15,9 +14,10 @@ export default {
     },
   },
   mounted () {
+    const postTypeID = this.$config.postTypeID;
     this.$triggerNextPage(() =>  {
       client.getEntries({
-        'content_type': 'collection',
+        'content_type': postTypeID,
         'order': '-fields.date',
         'fields.date[lt]': this.at,
         'limit': 1,
@@ -25,7 +25,7 @@ export default {
       .then(entries => {
         if (entries.total === 0) {
           return client.getEntries({
-            'content_type': 'collection',
+            'content_type': postTypeID,
             'order': '-fields.date',
             'limit': 1,
           }).then(first => {

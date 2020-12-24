@@ -39,9 +39,9 @@ export default {
     ImageGallery,
     NextPage
   },
-  asyncData ({ env, params }) {
+  asyncData ({ $config: { postTypeID }, params }) {
     return client.getEntries({
-      'content_type': env.CTF_BLOG_POST_TYPE_ID,
+      'content_type': postTypeID,
       'fields.slug': params.slug
     }).then(entries => {
       return {

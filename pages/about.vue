@@ -16,11 +16,11 @@
 
   export default {
     // `env` is available in the context object
-    asyncData ({env}) {
+    asyncData ({ $config: { postTypeID } }) {
       return Promise.all([
         // fetch all blog posts sorted by creation date
         client.getEntries({
-          'content_type': env.CTF_BLOG_POST_TYPE_ID,
+          'content_type': postTypeID,
           order: '-sys.createdAt'
         })
       ]).then(([posts]) => {
