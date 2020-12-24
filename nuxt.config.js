@@ -2,16 +2,19 @@ const glob  = require('glob');
 const path = require('path');
 
 const { createClient } = require('./plugins/contentful');
-const cdaClient = createClient();
-const cmaContentful = require('contentful-management');
-const cmaClient = cmaContentful.createClient({
+const cdaClient = createClient({
   space: process.env.NUXT_ENV_CTF_SPACE_ID,
-  accessToken: process.env.NUXT_ENV_CTF_CMA_ACCESS_TOKEN
+  accessToken: process.env.NUXT_ENV_CTF_CDA_ACCESS_TOKEN,
 });
 
 export default {
+  target: 'static',
   publicRuntimeConfig: {
     postTypeID: process.env.NUXT_ENV_CTF_POST_TYPE_ID,
+  },
+  privateRuntimeConfig: {
+    space: process.env.NUXT_ENV_CTF_SPACE_ID,
+    accessToken: process.env.NUXT_ENV_CTF_CDA_ACCESS_TOKEN,
   },
   /*
   ** Headers of the page
@@ -47,16 +50,11 @@ export default {
         cdaClient.getEntries({
           'content_type': process.env.NUXT_ENV_CTF_POST_TYPE_ID
         }),
-        // get the blog post content type
-        cmaClient.getSpace(process.env.NUXT_ENV_CTF_SPACE_ID)
-          .then(space => space.getContentType(process.env.NUXT_ENV_CTF_POST_TYPE_ID))
       ])
-      .then(([entries, postType]) => {
+      .then(([ entries ]) => {
         return [
           // map entries to URLs
-          ...entries.items.map(entry => `/${entry.fields.slug}`),
-          // map all possible tags to URLs
-          ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `/tags/${tag}`)
+          ...entries.items.map(entry => `/${entry.fields.slug}`)
         ]
       })
     }
