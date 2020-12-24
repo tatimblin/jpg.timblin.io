@@ -41,7 +41,8 @@ export default {
   */
   loading: { color: '#fff' },
   router: {
-    middleware: 'index'
+    middleware: 'index',
+    trailingSlash: false,
   },
   generate: {
     routes () {

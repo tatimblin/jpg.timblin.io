@@ -7,14 +7,15 @@ const client = createClient()
 
 export default {
   layout: 'default',
-  asyncData({ $config: { postTypeID }, app: { router } }) {
+  mounted() {
+    const postTypeID = this.$config.postTypeID;
     const slug = client.getEntries({
       'content_type': postTypeID,
       'order': '-fields.date',
       'limit': 1,
     })
     .then(entries => {
-      router.push(entries.items[0].fields.slug)
+      this.$router.push(entries.items[0].fields.slug)
     })
   },
 };
