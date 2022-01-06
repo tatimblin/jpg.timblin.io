@@ -1,12 +1,7 @@
 <template>
-  <main class="Collection">
+  <main class="Collection" v-if="post">
     <div class="Collection-hero">
-      <intro-section
-        :title="post.fields.title"
-        :date="post.fields.date"
-        :description="post.fields.description"
-        :facts="post.fields.highlights"
-      />
+      <intro-section v-if="post.fields" v-bind="post.fields" />
     </div>
     <transition
       v-bind:css="false"
@@ -17,7 +12,7 @@
         <div class="Collection-images">
           <image-gallery :gallery="post.fields.gallery"></image-gallery>
         </div>
-        <next-page :at="post.fields.date" />
+        <next-page :at="post.fields.date" :ready="isPageLoaded" />
       </div>
     </transition>
   </main>
@@ -45,19 +40,20 @@ export default {
       'fields.slug': params.slug
     }).then(entries => {
       return {
-        post: entries.items[0]
+        post: entries.items[0] || null,
+        isPageLoaded: false,
       }
     })
     .catch(console.error)
   },
   methods: {
-    enter: function (el, done) {
+    enter: function (el) {
 			TweenMax.from(el, 1, {
         opacity: 0,
         display: 'none',
         ease:Power3.easeOut,
-        delay: 2.5,
-				onComplete: done
+        delay: 0,
+				onComplete: () => this.isPageLoaded = true,
       });
     },
   },
@@ -72,10 +68,9 @@ export default {
     position: sticky;
 		display: flex;
 		justify-content: center;
-		align-items: center;
-		width: 100vw;
-    height: 100vh;
-    top: 0;
+    width: 100vw;
+    min-height: 100vh;
+    top: -50vh;
     bottom: 0;
 	}
 	

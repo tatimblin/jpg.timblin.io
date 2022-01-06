@@ -11,6 +11,10 @@ export default {
     at: {
       type: String,
     },
+    ready: {
+      type: Boolean,
+      default: false,
+    },
   },
   mounted () {
     const postTypeID = this.$config.postTypeID;
@@ -34,7 +38,8 @@ export default {
         return entries
       })
       .then(entries => {
-        this.$router.push(entries.items[0].fields.slug)
+        const slug = entries?.items[0]?.fields?.slug || '/';
+        if (this.ready) this.$router.push(slug);
       })
     })
   },
@@ -45,7 +50,7 @@ export default {
 .NextPage
 {
   position: relative;
-  height: 100vh;
+  height: 120vh;
   background: rgb(255,255,255);
   background: linear-gradient(0deg, rgba(255,255,255,1) 85%, rgba(255,255,255,0) 100%);
   z-index: 1;
