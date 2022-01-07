@@ -81,6 +81,7 @@ export default {
 
   &-hero--overflow
   {
+    margin: 33vh 0;
     top: -100%;
   }
 	

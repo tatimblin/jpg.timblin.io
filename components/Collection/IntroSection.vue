@@ -124,7 +124,7 @@ export default {
 .IntroSection
 {
   width: 100%;
-  margin: 33vh $spacing/2;
+  margin: 0 $spacing/2;
   left: auto;
   right: auto;
 
