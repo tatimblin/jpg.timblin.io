@@ -15,7 +15,12 @@
       @enter="enterBody"
       appear
     >
-      <p class="IntroSection-desc" itemprop="about" v-if="description">{{ description }}</p>
+      <p class="IntroSection-desc" itemprop="about" v-if="description">{{ description }}
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti impedit id neque! Doloribus ad adipisci totam libero nisi nostrum voluptate culpa cupiditate eos necessitatibus, iste itaque beatae deserunt fuga fugiat?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti impedit id neque! Doloribus ad adipisci totam libero nisi nostrum voluptate culpa cupiditate eos necessitatibus, iste itaque beatae deserunt fuga fugiat?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti impedit id neque! Doloribus ad adipisci totam libero nisi nostrum voluptate culpa cupiditate eos necessitatibus, iste itaque beatae deserunt fuga fugiat?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti impedit id neque! Doloribus ad adipisci totam libero nisi nostrum voluptate culpa cupiditate eos necessitatibus, iste itaque beatae deserunt fuga fugiat?
+      </p>
     </transition>
     <ul class="IntroSection-facts" v-if="facts.length">
       <li class="IntroSection-fact"
@@ -60,6 +65,12 @@ export default {
       type: Array,
       default: () => [],
     },
+  },
+  mounted() {
+    if (!this.description) {
+      if (this.date) this.enterSubtext();
+      if (this.facts.length) this.enterFacts();
+    }
   },
   methods: {
     enterHeadline: function (el) {

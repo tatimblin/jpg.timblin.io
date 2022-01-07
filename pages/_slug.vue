@@ -81,8 +81,14 @@ export default {
 
   &-hero--overflow
   {
-    margin: 33vh 0;
-    top: -100%;
+    margin: 30vh 0;
+    top: -60%;
+
+    @include query(small)
+    {
+      margin: 33vh 0;
+      top: -100%;
+    }
   }
 	
 	&-images
