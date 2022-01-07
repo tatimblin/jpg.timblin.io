@@ -17,7 +17,7 @@
     >
       <p class="IntroSection-desc" itemprop="about" v-if="description">{{ description }}</p>
     </transition>
-    <ul class="IntroSection-facts" v-if="facts">
+    <ul class="IntroSection-facts" v-if="facts.length">
       <li class="IntroSection-fact"
         itemprop="keywords"
         v-for="fact in facts"
@@ -124,8 +124,7 @@ export default {
 .IntroSection
 {
   width: 100%;
-  margin: 0 $spacing/2;
-  padding: 30vh 0;
+  margin: 33vh $spacing/2;
   left: auto;
   right: auto;
 

@@ -1,7 +1,7 @@
 <template>
   <main class="Collection" v-if="post">
-    <div class="Collection-hero">
-      <intro-section v-if="post.fields" v-bind="post.fields" />
+    <div :class="heroClass">
+      <intro-section v-if="post.fields" v-bind="post.fields" ref="textContent" />
     </div>
     <transition
       v-bind:css="false"
@@ -42,9 +42,14 @@ export default {
       return {
         post: entries.items[0] || null,
         isPageLoaded: false,
+        heroClass: 'Collection-hero',
       }
     })
     .catch(console.error)
+  },
+  mounted() {
+    const isGreaterThanViewport = this.$refs.textContent.$el.clientHeight > window.innerHeight;
+    if (isGreaterThanViewport) this.heroClass += ` ${this.heroClass}--overflow`;
   },
   methods: {
     enter: function (el) {
@@ -68,11 +73,16 @@ export default {
     position: sticky;
 		display: flex;
 		justify-content: center;
+    align-items: center;
     width: 100vw;
     min-height: 100vh;
-    top: -50vh;
-    bottom: 0;
+    top: 0;
 	}
+
+  &-hero--overflow
+  {
+    top: -100%;
+  }
 	
 	&-images
 	{
