@@ -68,6 +68,15 @@ $font-weight-bold: 700;
   font-weight: $font-weight-normal;
 }
 
+@mixin sub {
+  @include base;
+  @include type-setting(1);
+
+  margin-bottom: $spacing;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: $font-weight-normal;
+}
+
 @mixin brow {
   @include base;
   @include type-setting(0);
