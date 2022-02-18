@@ -5,21 +5,25 @@
       v-for="image in gallery"
       :key="image.fields.file.url"
     >
-      <img
+      <lazy-load
         class="ImageGallery-img"
         itemprop="image"
         :style="imageOffset()"
-        :src="image.fields.file.url"
+        :src="image.fields.file.url + '?fit=pad&w=800&h=600'"
         :alt="image.fields.title"
-        ref="js-img"
-      >
+      />
     </div>
   </section>
 </template>
 
 <script>
+import LazyLoad from '../LazyLoad.vue';
+
 export default {
   props: ['gallery'],
+  components: {
+    LazyLoad,
+  },
   mounted () {
   },
   methods: {
@@ -60,8 +64,20 @@ export default {
 
 	&-img
 	{
-		max-width: calc(100% - 30px);
-		max-height: calc(100vh - 150px);
+		max-width: calc(100vw - 64px);
+		max-height: calc(100vh - 64px);
+
+    @include query(small)
+    {
+      max-width: calc(100vw - 128px);
+		  max-height: calc(100vh - 128px);
+    }
+
+    @include query(medium)
+    {
+      max-width: calc(100vw - 192px);
+		  max-height: calc(100vh - 192px);
+    }
 	}
 }
 </style>

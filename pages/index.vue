@@ -4,7 +4,9 @@
       <h1 class="Main-hero">
         {{ hero }}
       </h1>
+
       <nuxt-link to="start">Start</nuxt-link>
+
       <ul class="Main-list" v-if="items.length">
         <li class="Main-item" v-for="item in items" :key="item.id">
           <nuxt-link :to="item.fields.slug">
@@ -46,6 +48,7 @@ export default {
   &-content
   {
     margin: 80px auto;
+    padding: 0 16px;
 
     @include query(small)
     {

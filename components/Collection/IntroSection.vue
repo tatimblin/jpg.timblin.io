@@ -15,11 +15,8 @@
       @enter="enterBody"
       appear
     >
-      <p class="IntroSection-desc" itemprop="about" v-if="description">{{ description }}
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti impedit id neque! Doloribus ad adipisci totam libero nisi nostrum voluptate culpa cupiditate eos necessitatibus, iste itaque beatae deserunt fuga fugiat?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti impedit id neque! Doloribus ad adipisci totam libero nisi nostrum voluptate culpa cupiditate eos necessitatibus, iste itaque beatae deserunt fuga fugiat?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti impedit id neque! Doloribus ad adipisci totam libero nisi nostrum voluptate culpa cupiditate eos necessitatibus, iste itaque beatae deserunt fuga fugiat?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti impedit id neque! Doloribus ad adipisci totam libero nisi nostrum voluptate culpa cupiditate eos necessitatibus, iste itaque beatae deserunt fuga fugiat?
+      <p class="IntroSection-desc" itemprop="about" v-if="description">
+        {{ description }}
       </p>
     </transition>
     <ul class="IntroSection-facts" v-if="facts.length">
@@ -80,7 +77,8 @@ export default {
       const splitHeadline = new SplitText(el.querySelectorAll(`.${parentClass}`), { type: "lines" });
 
       TweenMax.staggerFrom(splitHeadline.lines, 1, {
-        y: 110,
+        opacity: 0,
+        y: 40,
         ease: Power3.easeOut,
         onComplete: () => {
           splitHeadline.revert();
