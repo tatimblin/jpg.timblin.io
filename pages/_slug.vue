@@ -12,9 +12,9 @@
         <div class="Collection-images">
           <image-gallery :gallery="post.fields.gallery"></image-gallery>
         </div>
-        <next-page :at="post.fields.date" :ready="isPageLoaded" />
       </div>
     </transition>
+    <next-page :at="post.fields.date" :ready="isPageLoaded" />
   </main>
 </template>
 

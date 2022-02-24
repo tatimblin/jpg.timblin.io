@@ -2,10 +2,19 @@
   <section class="ImageGallery">
     <div
       class="ImageGallery-item"
-      v-for="image in gallery"
+      v-for="(image, index) in gallery"
       :key="image.fields.file.url"
     >
+      <img
+        v-if="index === gallery.length - 1"
+        class="ImageGallery-img"
+        itemprop="image"
+        :style="imageOffset()"
+        :src="image.fields.file.url + '?fit=pad&w=800&h=600'"
+        :alt="image.fields.title"
+      />
       <lazy-load
+        v-else
         class="ImageGallery-img"
         itemprop="image"
         :style="imageOffset()"

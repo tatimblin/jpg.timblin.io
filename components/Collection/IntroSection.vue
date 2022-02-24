@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import TweenMax from 'gsap'
 import moment from 'moment'
 
 export default {
+  scrollToTop: true,
   head () {
     return {
       title: `${this.title} - photography by tris timb`,
@@ -133,6 +133,7 @@ export default {
 .IntroSection
 {
   width: 100%;
+  min-height: 300px;
   margin: 0 $spacing/2;
   left: auto;
   right: auto;
@@ -140,6 +141,7 @@ export default {
   @include query(small)
   {
     width: map-get($breakpoints, small);
+    min-height: auto;
   }
 
   @include query(large)
