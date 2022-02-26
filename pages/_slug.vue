@@ -3,15 +3,9 @@
     <div :class="heroClass">
       <intro-section v-if="post.fields" v-bind="post.fields" ref="textContent" />
     </div>
-    <transition
-      v-bind:css="false"
-      @enter="enter"
-      appear
-    >
-      <div class="Collection-body">
-        <div class="Collection-images">
-          <image-gallery :gallery="post.fields.gallery"></image-gallery>
-        </div>
+    <transition v-bind:css="false" @enter="enter" appear>
+      <div class="Collection-images">
+        <image-gallery :gallery="post.fields.gallery" />
       </div>
     </transition>
     <next-page :at="post.fields.date" :ready="isPageLoaded" />
@@ -19,25 +13,25 @@
 </template>
 
 <script>
-import { createClient } from '~/plugins/contentful.js'
-import TweenMax from 'gsap'
-import IntroSection from '~/components/Collection/IntroSection'
-import ImageGallery from '~/components/Collection/ImageGallery'
-import NextPage from '~/components/NextPage'
+import { createClient } from '~/plugins/contentful.js';
+import TweenMax from 'gsap';
+import IntroSection from '~/components/Collection/IntroSection';
+import ImageGallery from '~/components/Collection/ImageGallery';
+import NextPage from '~/components/NextPage';
 
-const client = createClient()
+const client = createClient();
 
 export default {
   layout: 'default',
   components: {
     IntroSection,
     ImageGallery,
-    NextPage
+    NextPage,
   },
   asyncData ({ $config: { postTypeID }, params }) {
     return client.getEntries({
       'content_type': postTypeID,
-      'fields.slug': params.slug
+      'fields.slug': params.slug,
     }).then(entries => {
       return {
         post: entries.items[0] || null,
@@ -45,7 +39,7 @@ export default {
         heroClass: 'Collection-hero',
       }
     })
-    .catch(console.error)
+    .catch(console.error);
   },
   mounted() {
     const isGreaterThanViewport = this.$refs.textContent.$el.clientHeight > window.innerHeight;

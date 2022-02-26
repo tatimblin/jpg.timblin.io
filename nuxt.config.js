@@ -20,22 +20,14 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'Photography by Tris Timb',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Quickly browse through my photography, sorted into collections over the years.' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    ],
-    script: [
-      { src: '/SplitText.min.js'},
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [{ src: '/SplitText.min.js'}]
   },
-  css: [
-    'assets/sass/global/main.scss'
-  ],
+  css: ['assets/sass/global/main.scss'],
   /*
   ** Customize the progress-bar color
   */

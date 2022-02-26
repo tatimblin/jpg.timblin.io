@@ -5,7 +5,11 @@
       :style="{ background }"
       class="LazyLoad-placeholder"
     >
-      <img :src="placeholder || dataUrl" alt="" v-bind="$attrs" />
+      <img
+        :src="placeholder || dataUrl"
+        alt=""
+        v-bind="$attrs"
+      />
     </div>
     <img
       :src="dataUrl"
@@ -31,81 +35,81 @@ export default {
 
   computed: {
     dataUrl() {
-      const { width, height } = this.$attrs
-      if (!width || !height) return ""
+      const { width, height } = this.$attrs;
+      if (!width || !height) return "";
 
       // create a tiny png with matching aspect ratio as img
-      const w = 100
-      const canvas = document.createElement("canvas")
-      canvas.width = w
-      canvas.height = (height / width) * w
+      const w = 100;
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = (height / width) * w;
 
-      return canvas.toDataURL()
+      return canvas.toDataURL();
     },
   },
 
   mounted() {
-    const { src, srcset, $el } = this
-    let timeOut
+    const { src, srcset, $el } = this;
+    let timeOut;
 
     const observer = new IntersectionObserver(([entry]) => {
-      const img = $el.querySelector(`.LazyLoad-img`)
-      const placeholder = $el.querySelector(`.LazyLoad-placeholder`)
+      const img = $el.querySelector(`.LazyLoad-img`);
+      const placeholder = $el.querySelector(`.LazyLoad-placeholder`);
 
       img.onload = function() {
-        delete img.onload
-        $el.classList.add(`LazyLoad--loaded`)
+        delete img.onload;
+        $el.classList.add(`LazyLoad--loaded`);
         if (placeholder) {
           timeOut = setTimeout(() => {
-            placeholder.remove()
+            placeholder.remove();
           }, 300)
         }
       }
       if (entry.isIntersecting) {
         // Element is in viewport
         if (!!srcset) {
-          img.srcset = srcset
+          img.srcset = srcset;
         }
-        img.src = src
-        observer.disconnect()
+        img.src = src;
+        observer.disconnect();
       }
-    })
-    observer.observe($el)
+    });
+    observer.observe($el);
 
     this.$once("hook:beforeDestroy", () => {
-      observer.disconnect()
+      observer.disconnect();
       if (timeOut) {
-        clearTimeout(timeOut)
+        clearTimeout(timeOut);
       }
     })
   },
 }
 </script>
 
-<style>
-.LazyLoad {
-  display: inline-block;
-  position: relative;
-}
+<style lang="scss">
+  .LazyLoad {
+    display: inline-block;
+    position: relative;
 
-.LazyLoad-placeholder {
-  position: absolute;
-  overflow: hidden;
-}
+    &-placeholder {
+      position: absolute;
+      overflow: hidden;
+    }
 
-.LazyLoad-placeholder img {
-  transform: scale(1.05);
-  filter: blur(10px);
-}
+    &-placeholder img {
+      transform: scale(1.05);
+      filter: blur(10px);
+    }
 
-.LazyLoad-img {
-  max-width: 100%;
-  max-height: 100%;
-  opacity: 0;
-  transition: opacity 300ms ease;
-}
+    &-img {
+      max-width: 100%;
+      max-height: 100%;
+      opacity: 0;
+      transition: opacity 300ms ease;
+    }
+  }
 
-.LazyLoad--loaded .LazyLoad-img {
-  opacity: 1;
-}
+  .LazyLoad--loaded .LazyLoad-img {
+    opacity: 1;
+  }
 </style>
