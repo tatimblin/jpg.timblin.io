@@ -9,7 +9,7 @@
   export default {
     props: {
       at: {
-        type: String,
+        type: Number,
       },
       ready: {
         type: Boolean,
@@ -21,15 +21,15 @@
       this.$triggerNextPage(() =>  {
         client.getEntries({
           'content_type': postTypeID,
-          'order': '-fields.date',
-          'fields.date[lt]': this.at,
+          'order': '-fields.order',
+          'fields.order[lt]': this.at,
           'limit': 1,
         })
         .then(entries => {
           if (entries.total === 0) {
             return client.getEntries({
               'content_type': postTypeID,
-              'order': '-fields.date',
+              'order': '-fields.order',
               'limit': 1,
             }).then(first => {
               return first;

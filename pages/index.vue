@@ -24,6 +24,12 @@ const client = createClient();
 
 export default {
   layout: 'default',
+  head () {
+    return {
+      title: this.head.fields.title,
+      description: this.head.fields.description,
+    };
+  },
   asyncData ({ $config: { postTypeID }}) {
     return client.getEntries({
       'content_type': 'homepage',
@@ -31,9 +37,13 @@ export default {
       .then((entries) => {
         return client.getEntries({
           'content_type': postTypeID,
+          'order': '-fields.order',
         })
           .then(({ items }) => {
-            return {...entries.items[0].fields, items};
+            return {
+              ...entries.items[0].fields,
+              items
+            };
           })
           .catch(console.error);
       })

@@ -32,14 +32,6 @@
 
   export default {
     scrollToTop: true,
-    head () {
-      return {
-        title: `${this.title} - photography by tris timb`,
-        meta: [
-          { hid: 'description', name: 'description', content: this.description },
-        ],
-      };
-    },
     props: {
       title: {
         type: String,

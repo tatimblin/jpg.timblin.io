@@ -1,14 +1,16 @@
 <template>
   <main class="Collection" v-if="post">
-    <div :class="heroClass">
+    <div class="Collection-hero">
       <intro-section v-if="post.fields" v-bind="post.fields" ref="textContent" />
     </div>
+
     <transition v-bind:css="false" @enter="enter" appear>
       <div class="Collection-images">
         <image-gallery :gallery="post.fields.gallery" />
       </div>
     </transition>
-    <next-page :at="post.fields.date" :ready="isPageLoaded" />
+
+    <next-page :at="post.fields.order" :ready="isPageLoaded" />
   </main>
 </template>
 
@@ -28,18 +30,33 @@ export default {
     ImageGallery,
     NextPage,
   },
-  asyncData ({ $config: { postTypeID }, params }) {
-    return client.getEntries({
-      'content_type': postTypeID,
-      'fields.slug': params.slug,
-    }).then(entries => {
-      return {
-        post: entries.items[0] || null,
-        isPageLoaded: false,
-        heroClass: 'Collection-hero',
-      }
-    })
-    .catch(console.error);
+  data() {
+    return {
+      isPageLoaded: false,
+    };
+  },
+  asyncData ({ $config, params, payload }) {
+    // `payload` passes the data for each post from the
+    // nuxt.config.js request to get the slug. It is only
+    // available in prod (nuxt start), so fallback to recreating
+    // the request for dev.
+    if (payload) return payload;
+    else return Promise.all([
+      client.getEntries({
+        'content_type': $config.postTypeID,
+        'fields.slug': params.slug,
+      }),
+      client.getEntries({
+        'content_type': 'homepage',
+      }),
+    ])
+      .then(([ posts, globals ]) => {
+        return {
+          post: posts.items[0] || null,
+          global: globals.items[0] || null,
+        }
+      })
+      .catch(console.error);
   },
   mounted() {
     const isGreaterThanViewport = this.$refs.textContent.$el.clientHeight > window.innerHeight;

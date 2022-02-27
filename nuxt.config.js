@@ -2,7 +2,7 @@ const glob  = require('glob');
 const path = require('path');
 
 const { createClient } = require('./plugins/contentful');
-const cdaClient = createClient({
+const contentfulClient = createClient({
   space: process.env.NUXT_ENV_CTF_SPACE_ID,
   accessToken: process.env.NUXT_ENV_CTF_CDA_ACCESS_TOKEN,
 });
@@ -28,10 +28,6 @@ export default {
     script: [{ src: '/SplitText.min.js'}]
   },
   css: ['assets/sass/global/main.scss'],
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
   router: {
     middleware: 'index',
     trailingSlash: false,
@@ -39,17 +35,24 @@ export default {
   generate: {
     routes () {
       return Promise.all([
-        // get all blog posts
-        cdaClient.getEntries({
-          'content_type': process.env.NUXT_ENV_CTF_POST_TYPE_ID
+        contentfulClient.getEntries({
+          'content_type': process.env.NUXT_ENV_CTF_POST_TYPE_ID,
+        }),
+        contentfulClient.getEntries({
+          'content_type': 'homepage',
         }),
       ])
-      .then(([ entries ]) => {
-        return [
-          // map entries to URLs
-          ...entries.items.map(entry => `/${entry.fields.slug}`)
-        ]
-      })
+        .then(([ posts, globals ]) => {
+          return posts.items.map((post) => {
+            return {
+              route: `/${post.fields.slug}`,
+              payload: {
+                post,
+                global: globals.items[0] ?? {},
+              },
+            };
+          });
+        });
     }
   },
   /*
