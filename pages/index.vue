@@ -1,19 +1,25 @@
 <template>
-  <main class="Main">
+  <main class="Main" :style="`--brand-color: ${this.brandColor}`">
     <div class="Main-content">
       <h1 class="Main-hero">
         {{ hero }}
       </h1>
+      
+      <div class="Main-group" v-for="(list, index) in groupByProperty(items, 'group')" :key="index">
 
-      <nuxt-link to="start">Start</nuxt-link>
+        <h2 class="Main-label">
+          {{index}}
+        </h2>
 
-      <ul class="Main-list" v-if="items.length">
-        <li class="Main-item" v-for="item in items" :key="item.id">
-          <nuxt-link :to="item.fields.slug">
-            {{item.fields.title}}
-          </nuxt-link>
-        </li>
-      </ul>
+        <ul class="Main-list">
+          <li class="Main-item" v-for="item in list" :key="item.id">
+            <nuxt-link class="Main-link" :to="item.fields.slug">
+              {{item.fields.title}}
+            </nuxt-link>
+          </li>
+        </ul>
+
+      </div>
     </div>
   </main>
 </template>
@@ -49,6 +55,17 @@ export default {
       })
       .catch(console.error);
   },
+  methods: {
+    groupByProperty: (array = [], property) => {
+      const groups = {};
+      array.forEach((item) => {
+        const qualifier = item.fields[property];
+        if (groups[qualifier]) groups[qualifier].push(item);
+        else groups[qualifier] = [item];
+      });
+      return groups;
+    },
+  },
 };
 </script>
 
@@ -57,7 +74,7 @@ export default {
 {
   &-content
   {
-    margin: 80px auto;
+    margin: 20vh auto 80px;
     padding: 0 16px;
 
     @include query(small)
@@ -71,19 +88,46 @@ export default {
     }
   }
 
+  &-hero,
+  &-group,
+  &-list
+  {
+    padding-bottom: 32px;
+  }
+
 	&-hero
 	{
     @include lead;
 	}
 
-  &-list
+  &-label
   {
-    padding: 32px 0;
+    @include brow;
   }
 
   &-item
   {
     @include sub;
+  }
+
+  &-link
+  {
+    color: var(--brand-color);
+    text-decoration: none;
+    margin: 0 -10px;
+    padding: 0 10px;
+    // animated underline
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 55%;
+    background-repeat: no-repeat;
+    background-size: 0 2px;
+    transition: background-size .3s;
+
+    &:hover,
+    &:focus
+    {
+      background-size: 100% 2px;
+    }
   }
 }
 </style>
