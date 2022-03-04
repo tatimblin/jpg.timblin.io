@@ -11,7 +11,7 @@ export default {
     const postTypeID = this.$config.postTypeID;
     client.getEntries({
       'content_type': postTypeID,
-      'order': '-fields.date',
+      'order': '-fields.order',
       'limit': 1,
     })
       .then(entries => this.$router.replace(entries.items[0].fields.slug));

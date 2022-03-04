@@ -51,6 +51,7 @@ export default {
       }),
     ])
       .then(([ posts, globals ]) => {
+        console.log(posts);
         return {
           post: posts.items[0] || null,
           global: globals.items[0] || null,

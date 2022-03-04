@@ -14,13 +14,13 @@
       </p>
     </transition>
 
-    <ul class="IntroSection-facts" v-if="facts.length">
+    <ul class="IntroSection-highlights" v-if="highlights.length">
       <li
-        class="IntroSection-fact"
-        v-for="fact in facts"
-        :key="fact"
+        class="IntroSection-highlight"
+        v-for="highlight in highlights"
+        :key="highlight"
       >
-        {{ fact }}
+        {{ highlight }}
       </li>
     </ul>
   </section>
@@ -45,7 +45,7 @@
         type: String,
         default: null
       },
-      facts: {
+      highlights: {
         type: Array,
         default: () => [],
       },
@@ -53,7 +53,7 @@
     mounted() {
       if (!this.description) {
         if (this.date) this.enterSubtext();
-        if (this.facts.length) this.enterFacts();
+        if (this.highlights.length) this.enterFacts();
       }
     },
     methods: {
@@ -65,25 +65,25 @@
 
         TweenMax.staggerFrom(splitHeadline.lines, 1, {
           opacity: 0,
-          y: 40,
+          y: 60,
           ease: Power3.easeOut,
           onComplete: () => {
             splitHeadline.revert();
           },
-        }, 0.15);
+        }, 0.2);
       },
       enterBody: function (el) {
         let stagger = 0.2;
 
         const splitSubline = new SplitText(el, { type: "lines" });
 
-        TweenMax.staggerFrom(splitSubline.lines || [], 1.33, {
+        TweenMax.staggerFrom(splitSubline.lines || [], 1, {
           opacity: 0,
           y: 10,
           ease: Power3.easeOut,
-          delay: 2,
+          delay: 1,
           onRepeat: () => {
-            stagger *= 0.9;
+            stagger *= 0.5;
           },
           onComplete: () => {
             splitSubline.revert();
@@ -93,18 +93,18 @@
         }, stagger);
       },
       enterSubtext: function () {
-        TweenMax.to('.IntroSection-subtext', .75, {
+        TweenMax.to('.IntroSection-subtext', 0.5, {
           opacity: 1,
           x: 0,
           ease: Power3.easeOut,
         });
       },
       enterFacts: function () {
-        TweenMax.staggerTo('.IntroSection-fact', 2, {
+        TweenMax.staggerTo('.IntroSection-highlight', 0.6, {
           opacity: 1,
           y: 0,
           ease: Power3.easeOut,
-          delay: 0.15,
+          delay: 1,
         }, 0.15);
       },
     },
@@ -157,7 +157,7 @@
       @include body;
     }
 
-    &-facts {
+    &-highlights {
       margin: $spacing 0;
       columns: 2;
 
@@ -166,7 +166,7 @@
       }
     }
 
-    &-fact {
+    &-highlight {
       @include rib;
 
       opacity: 0;
