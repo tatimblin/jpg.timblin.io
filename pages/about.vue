@@ -21,7 +21,6 @@ const client = createClient();
 export default {
   layout: 'default',
   head () {
-    console.log(this);
     return {
       title: this.aboutHead?.fields?.title,
       description: this.aboutHead?.fields?.description,

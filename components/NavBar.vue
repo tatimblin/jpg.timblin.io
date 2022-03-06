@@ -2,17 +2,17 @@
   <nav class="NavBar">
     <ul class="NavBar-list">
       <li class="NavBar-item">
-        <nuxt-link to="/">
+        <nuxt-link class="NavBar-link" to="/">
           Home
         </nuxt-link>
       </li>
       <li class="NavBar-item">
-        <nuxt-link to="/start">
+        <nuxt-link :class="`${collectionsActive()} NavBar-link`" to="/start">
           Collections
         </nuxt-link>
       </li>
       <li class="NavBar-item">
-        <nuxt-link to="/about">
+        <nuxt-link class="NavBar-link" to="/about">
           About
         </nuxt-link>
       </li>
@@ -23,6 +23,11 @@
 <script>
 export default {
   name: 'NavBar',
+  methods: {
+    collectionsActive() {
+      return this.$route.name === 'slug' ? 'nuxt-link-exact-active' : '';
+    }
+  }
 };
 </script>
 
@@ -32,7 +37,7 @@ export default {
     position: absolute;
     z-index: 100;
     width: 100%;
-    top: 5px;
+    top: 12px;
     left: 0;
 
     &-list
@@ -43,8 +48,24 @@ export default {
 
     &-item
     {
-      margin: 2px 8px;
+      margin: 0 8px;
       padding: 2px 8px;
+    }
+
+    &-link
+    {
+      @include link;
+    }
+
+    &-link.nuxt-link-exact-active
+    {
+      color: $black;
+
+      &:hover,
+      &:focus
+      {
+        text-decoration: none;
+      }
     }
   }
 </style>

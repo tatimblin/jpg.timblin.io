@@ -118,3 +118,20 @@ $font-weight-bold: 700;
 
   font-family: 'DM Sans', sans-serif;
 }
+
+@mixin link {
+  @include type-setting(-1);
+
+  font-family: monospace;
+  color: $gray300;
+  text-decoration: none;
+  letter-spacing: 0.33px;font-family: monospace;
+  text-decoration: none;
+  letter-spacing: 0.33px;
+
+  &:hover,
+  &:focus
+  {
+    text-decoration: underline;
+  }
+}
