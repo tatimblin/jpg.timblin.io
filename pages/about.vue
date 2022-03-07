@@ -7,7 +7,7 @@
       
       <div class="Main-group">
 
-        Hey
+        <render-pdf :asset="resume" />
 
       </div>
     </div>
@@ -15,11 +15,15 @@
 </template>
 
 <script>
+import RenderPdf from '../components/RenderPDF';
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient();
 
 export default {
   layout: 'default',
+  components: {
+    RenderPdf,
+  },
   head () {
     return {
       title: this.aboutHead?.fields?.title,
@@ -30,7 +34,10 @@ export default {
     return client.getEntries({
       'content_type': 'homepage',
     })
-      .then((entries) => entries.items[0].fields)
+      .then((entries) => {
+        console.log(entries.items[0]);
+        return entries.items[0].fields;
+      })
       .catch(console.error);
   },
 };
