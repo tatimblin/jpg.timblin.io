@@ -17,10 +17,9 @@
       },
     },
     mounted () {
-      const postTypeID = this.$config.postTypeID;
       this.$triggerNextPage(() =>  {
         client.getEntries({
-          'content_type': postTypeID,
+          'content_type': this.$config.postTypeID,
           'order': '-fields.order',
           'fields.order[lt]': this.at,
           'limit': 1,
@@ -28,7 +27,7 @@
         .then(entries => {
           if (entries.total === 0) {
             return client.getEntries({
-              'content_type': postTypeID,
+              'content_type': this.$config.postTypeID,
               'order': '-fields.order',
               'limit': 1,
             }).then(first => {
@@ -41,7 +40,7 @@
           const slug = entries?.items[0]?.fields?.slug || '/';
           if (this.ready) this.$router.push(slug);
         });
-      });
+      }, 500);
     },
   };
 </script>

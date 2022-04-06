@@ -36,6 +36,9 @@ export default {
       description: this.head.fields.description,
     };
   },
+  mounted () {
+    this.$triggerNextPage(null);
+  },
   asyncData ({ $config: { postTypeID }}) {
     return client.getEntries({
       'content_type': 'homepage',

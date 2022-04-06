@@ -4,6 +4,10 @@
       <h1 class="Main-hero">
         {{ hero }}
       </h1>
+
+      <a class="Main-cta" :href="`mailto:${email}`">
+        {{ email }}
+      </a>
       
       <div class="Main-group">
 
@@ -30,6 +34,9 @@ export default {
       description: this.aboutHead?.fields?.description,
     };
   },
+  mounted () {
+    this.$triggerNextPage(null);
+  },
   asyncData () {
     return client.getEntries({
       'content_type': 'homepage',
@@ -46,27 +53,29 @@ export default {
 <style lang="scss">
 .Main
 {
-  &-content
-  {
+  &-content {
     margin: 20vh auto 80px;
     padding: 0 16px;
 
-    @include query(small)
-    {
+    @include query(small) {
       width: map-get($breakpoints, small);
     }
 
-    @include query(large)
-    {
+    @include query(large) {
       width: map-get($breakpoints, large);
     }
   }
 
-	&-hero
-	{
+	&-hero {
     @include lead;
-
-    padding-bottom: 32px;
 	}
+
+  &-cta {
+    @include link;
+    @include brow;
+
+    display: inline-block;
+    padding-bottom: 32px;
+  }
 }
 </style>

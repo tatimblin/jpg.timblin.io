@@ -1,12 +1,17 @@
 import Vue from 'vue'
 
-Vue.prototype.$triggerNextPage = (callback) => {
+Vue.prototype.$triggerNextPage = (callback, delay = 300) => {
 	const grace = 50;
+	let timeout;
 	window.onscroll = () => {
-		if (window.scrollY > grace) {
-			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - grace) {
-				callback();
-			}
-		}
+		clearTimeout(timeout);
+		if (isScrolledBottom()) timeout = setTimeout(callback, delay);
 	}
+}
+
+function isScrolledBottom(grace = 0) {
+	const documentHeight = document.body.offsetHeight;
+	const scrolledHeight = window.innerHeight + window.scrollY;
+
+	return scrolledHeight >= documentHeight - grace;
 }
