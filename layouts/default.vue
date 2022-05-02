@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <nav-bar />
+    <nav-bar v-show="hideHeader" />
     <nuxt />
   </div>
 </template>
@@ -12,5 +12,10 @@ export default {
   components: {
     NavBar
   },
+  computed: {
+    hideHeader() {
+      return process.env.NUXT_HIDE_HEADER === 'true';
+    }
+  }
 };
 </script>

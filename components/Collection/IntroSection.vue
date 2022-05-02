@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import TweenMax from 'gsap';
+  import { gsap, Power3 } from 'gsap';
   import moment from 'moment';
 
   export default {
@@ -63,21 +63,24 @@
         new SplitText(el, { type: "lines", linesClass: parentClass });
         const splitHeadline = new SplitText(el.querySelectorAll(`.${parentClass}`), { type: "lines" });
 
-        TweenMax.staggerFrom(splitHeadline.lines, 1, {
+        gsap.from(splitHeadline.lines, {
+          duration: 1,
           opacity: 0,
           y: 60,
           ease: Power3.easeOut,
           onComplete: () => {
             splitHeadline.revert();
           },
-        }, 0.2);
+          stagger: 0.2,
+        });
       },
       enterBody: function (el) {
         let stagger = 0.2;
 
         const splitSubline = new SplitText(el, { type: "lines" });
 
-        TweenMax.staggerFrom(splitSubline.lines || [], 1, {
+        gsap.from(splitSubline.lines || [], {
+          duration: 1,
           opacity: 0,
           y: 10,
           ease: Power3.easeOut,
@@ -90,22 +93,26 @@
             this.enterSubtext();
             this.enterFacts();
           },
-        }, stagger);
+          stagger,
+        });
       },
       enterSubtext: function () {
-        TweenMax.to('.IntroSection-subtext', 0.5, {
+        gsap.to('.IntroSection-subtext', {
+          duration: 0.5,
           opacity: 1,
           x: 0,
           ease: Power3.easeOut,
         });
       },
       enterFacts: function () {
-        TweenMax.staggerTo('.IntroSection-highlight', 0.6, {
+        gsap.to('.IntroSection-highlight', {
+          duration: 0.6,
           opacity: 1,
           y: 0,
           ease: Power3.easeOut,
           delay: 1,
-        }, 0.15);
+          stagger: 0.15,
+        });
       },
     },
     filters: {
@@ -120,7 +127,7 @@
   .IntroSection {
     width: 100%;
     min-height: 300px;
-    margin: 0 $spacing/2;
+    margin: 0 calc(#{$spacing} / 2);
     left: auto;
     right: auto;
 

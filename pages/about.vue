@@ -42,10 +42,9 @@ export default {
       'content_type': 'homepage',
     })
       .then((entries) => {
-        console.log(entries.items[0]);
         return entries.items[0].fields;
       })
-      .catch(console.error);
+      .catch(() => {});
   },
 };
 </script>

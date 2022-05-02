@@ -1,24 +1,26 @@
 <template>
   <main class="Main" :style="`--brand-color: ${this.brandColor}`">
     <div class="Main-content">
-      <h1 class="Main-hero">
+      <h1 v-if="hero" class="Main-hero">
         {{ hero }}
       </h1>
       
-      <div class="Main-group" v-for="(list, index) in groupByProperty(items, 'group')" :key="index">
+      <div v-if="items">
+        <div class="Main-group" v-for="(list, index) in groupByProperty(items, 'group')" :key="index">
 
-        <h2 class="Main-label">
-          {{index}}
-        </h2>
+          <h2 class="Main-label">
+            {{index}}
+          </h2>
 
-        <ul class="Main-list">
-          <li class="Main-item" v-for="item in list" :key="item.id">
-            <nuxt-link class="Main-link" :to="item.fields.slug">
-              {{item.fields.title}}
-            </nuxt-link>
-          </li>
-        </ul>
+          <ul class="Main-list">
+            <li class="Main-item" v-for="item in list" :key="item.id">
+              <nuxt-link class="Main-link" :to="item.fields.slug">
+                {{item.fields.title}}
+              </nuxt-link>
+            </li>
+          </ul>
 
+        </div>
       </div>
     </div>
   </main>
@@ -32,12 +34,13 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.head.fields.title,
-      description: this.head.fields.description,
+      title: this.head?.fields?.title,
+      description: this.head?.fields?.description,
     };
   },
   mounted () {
     this.$triggerNextPage(null);
+    if (this.url) this.$router.replace(this.url);
   },
   asyncData ({ $config: { postTypeID }}) {
     return client.getEntries({
@@ -46,7 +49,7 @@ export default {
       .then((entries) => {
         return client.getEntries({
           'content_type': postTypeID,
-          'order': '-fields.order',
+          'order': '-fields.date',
         })
           .then(({ items }) => {
             return {
@@ -56,7 +59,21 @@ export default {
           })
           .catch(console.error);
       })
-      .catch(console.error);
+      .catch(() => {
+        return client.getEntries({
+          'content_type': postTypeID,
+          'order': '-fields.date',
+          'limit': 1,
+        })
+          .then((entries) => {
+            return {
+              hero: '',
+              brandColor: '#000',
+              items: [],
+              url: entries.items[0].fields.slug,
+            }
+          });
+      });
   },
   methods: {
     groupByProperty: (array = [], property) => {
