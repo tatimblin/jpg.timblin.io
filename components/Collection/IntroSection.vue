@@ -121,7 +121,7 @@
   .IntroSection {
     width: 100%;
     min-height: 300px;
-    margin: 0 calc(#{$spacing}, 2);
+    margin: 0 calc(#{$spacing} * 2);
     left: auto;
     right: auto;
 
