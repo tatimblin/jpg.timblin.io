@@ -1,7 +1,10 @@
 @import 'reset';
 @import url('https://fonts.googleapis.com/css?family=DM+Sans:400,700|EB+Garamond&display=swap');
 
-body
-{
+html {
+  scroll-behavior: smooth;
+}
+
+body {
   font-size: 14px;
 }
