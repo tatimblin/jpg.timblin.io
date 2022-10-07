@@ -1,18 +1,22 @@
 <template>
   <main class="Main" :style="`--brand-color: ${this.brandColor}`">
     <div class="Main-content">
-      <h1 class="Main-hero">
+      <h1 v-if="hero" class="Main-hero">
         {{ hero }}
       </h1>
 
-      <a class="Main-cta" :href="`mailto:${email}`">
-        {{ email }}
-      </a>
+      <div class="Main-ctaWrapper">
+        <a v-if="email" class="Main-cta" :href="`mailto:${email}`">
+          {{ email }}
+        </a>
+
+        <a v-if="website" class="Main-cta" :href="website">
+          {{ website }}
+        </a>
+      </div>
       
       <div class="Main-group">
-
-        <render-pdf :asset="resume" />
-
+        <render-pdf v-if="resume" :asset="resume" />
       </div>
     </div>
   </main>
@@ -32,6 +36,14 @@ export default {
     return {
       title: this.aboutHead?.fields?.title,
       description: this.aboutHead?.fields?.description,
+    };
+  },
+  data() {
+    return {
+      email: '',
+      hero: '',
+      resume: '',
+      website: '',
     };
   },
   mounted () {
@@ -54,7 +66,7 @@ export default {
 {
   &-content {
     margin: 20vh auto 80px;
-    padding: 0 16px;
+    padding: 0 calc(#{$spacing} / 2);
 
     @include query(small) {
       width: map-get($breakpoints, small);
@@ -69,12 +81,18 @@ export default {
     @include lead;
 	}
 
+  &-ctaWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: $spacing;
+  }
+
   &-cta {
     @include link;
     @include brow;
 
-    display: inline-block;
-    padding-bottom: 32px;
+    display: block;
+    margin-bottom: $spacing;
   }
 }
 </style>

@@ -81,7 +81,7 @@ $font-weight-bold: 700;
   @include base;
   @include type-setting(0);
 
-  margin-bottom: calc(#{$spacing} / 2);
+  margin-bottom: calc(#{$spacing} * 2);
   color: $gray600;
   font-family: 'DM Sans', sans-serif;
   font-weight: $font-weight-bold;
@@ -98,7 +98,7 @@ $font-weight-bold: 700;
   @include base;
   @include type-setting(0);
 
-  margin-bottom: calc(#{$spacing} / 3);
+  margin-bottom: calc(#{$spacing} * 3);
   font-family: 'DM Sans', sans-serif;
   color: $gray600;
   font-weight: $font-weight-normal;

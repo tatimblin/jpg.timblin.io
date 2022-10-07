@@ -4,8 +4,12 @@
       <intro-section v-if="post.fields" v-bind="post.fields" ref="textContent" />
     </div>
 
+    <a href="#images">
+      <scroll-indicator />
+    </a>
+
     <transition v-bind:css="false" @enter="enter" appear>
-      <div class="Collection-images">
+      <div class="Collection-images" id="images">
         <image-gallery :gallery="post.fields.gallery" />
       </div>
     </transition>
@@ -20,6 +24,7 @@ import { gsap, Power3 } from 'gsap';
 import IntroSection from '~/components/Collection/IntroSection';
 import ImageGallery from '~/components/Collection/ImageGallery';
 import NextPage from '~/components/NextPage';
+import ScrollIndicator from '~/components/ScrollIndicator';
 
 const client = createClient();
 
@@ -29,6 +34,7 @@ export default {
     IntroSection,
     ImageGallery,
     NextPage,
+    ScrollIndicator,
   },
   head () {
     console.log(this.post);
@@ -99,6 +105,7 @@ export default {
 		display: flex;
 		justify-content: center;
     align-items: center;
+    width: 100%;
     min-height: 100vh;
     top: 0;
 	}

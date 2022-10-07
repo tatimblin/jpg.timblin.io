@@ -33,6 +33,8 @@ const client = createClient();
 export default {
   layout: 'default',
   head () {
+    if (!this.head) return {};
+
     return {
       title: this.head?.fields?.title,
       description: this.head?.fields?.description,
@@ -49,7 +51,7 @@ export default {
       .then((entries) => {
         return client.getEntries({
           'content_type': postTypeID,
-          'order': '-fields.date',
+          'order': '-fields.order,-fields.date',
         })
           .then(({ items }) => {
             return {

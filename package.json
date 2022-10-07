@@ -25,6 +25,7 @@
     "@nuxtjs/style-resources": "^0.1.2",
     "glob": "^7.1.4",
     "nodemon": "^2.0.15",
+    "sass": "^1.55.0",
     "sass-loader": "^10.2.1"
   }
 }

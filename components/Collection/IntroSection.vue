@@ -75,44 +75,41 @@
         });
       },
       enterBody: function (el) {
-        let stagger = 0.2;
+        let stagger = 0.1;
 
         const splitSubline = new SplitText(el, { type: "lines" });
 
-        gsap.from(splitSubline.lines || [], {
-          duration: 1,
+        TweenMax.staggerFrom(splitSubline.lines || [], 0.5, {
           opacity: 0,
-          y: 10,
+          y: 100,
           ease: Power3.easeOut,
-          delay: 1,
           onRepeat: () => {
-            stagger *= 0.5;
+            stagger *= 0.25;
           },
           onComplete: () => {
             splitSubline.revert();
-            this.enterSubtext();
+            this.enterText('.IntroSection-subtext', 0);
+            this.enterText('.IntroSection-desc', -15);
             this.enterFacts();
           },
           stagger,
         });
       },
-      enterSubtext: function () {
-        gsap.to('.IntroSection-subtext', {
-          duration: 0.5,
+      enterText: function (selector, translateY) {
+        TweenMax.to(selector, 0.3, {
           opacity: 1,
           x: 0,
+          y: translateY,
           ease: Power3.easeOut,
         });
       },
       enterFacts: function () {
-        gsap.to('.IntroSection-highlight', {
-          duration: 0.6,
+        TweenMax.staggerTo('.IntroSection-highlight', 1, {
           opacity: 1,
           y: 0,
           ease: Power3.easeOut,
-          delay: 1,
-          stagger: 0.15,
-        });
+          delay: 0,
+        }, 0.15);
       },
     },
     filters: {
@@ -127,7 +124,7 @@
   .IntroSection {
     width: 100%;
     min-height: 300px;
-    margin: 0 calc(#{$spacing} / 2);
+    margin: 0 calc(#{$spacing} * 2);
     left: auto;
     right: auto;
 
@@ -162,6 +159,8 @@
 
     &-desc {
       @include body;
+
+      opacity: 0;
     }
 
     &-highlights {
