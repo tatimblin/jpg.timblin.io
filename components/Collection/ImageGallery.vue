@@ -9,14 +9,14 @@
         v-if="index === gallery.length - 1"
         class="ImageGallery-img"
         :style="imageOffset()"
-        :src="image.fields.file.url + '?fit=pad&w=800&h=600'"
+        :src="image.fields.file.url + '?fit=pad&w=800&h=600&fm=png'"
         :alt="image.fields.title"
       />
       <lazy-load
         v-else
         class="ImageGallery-img"
         :style="imageOffset()"
-        :src="image.fields.file.url + '?fit=pad&w=800&h=600'"
+        :src="image.fields.file.url + '?fit=pad&w=800&h=600&fm=png'"
         :alt="image.fields.title"
       />
     </div>

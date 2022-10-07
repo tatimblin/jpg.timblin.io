@@ -56,7 +56,7 @@ export default {
       .then((entries) => {
         return entries.items[0].fields;
       })
-      .catch(console.error);
+      .catch(() => {});
   },
 };
 </script>

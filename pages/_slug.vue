@@ -14,13 +14,13 @@
       </div>
     </transition>
 
-    <next-page :at="post.fields.order" :ready="isPageLoaded" />
+    <next-page :at="post.fields.date" :ready="isPageLoaded" />
   </main>
 </template>
 
 <script>
 import { createClient } from '~/plugins/contentful.js';
-import TweenMax from 'gsap';
+import { gsap, Power3 } from 'gsap';
 import IntroSection from '~/components/Collection/IntroSection';
 import ImageGallery from '~/components/Collection/ImageGallery';
 import NextPage from '~/components/NextPage';
@@ -36,6 +36,19 @@ export default {
     NextPage,
     ScrollIndicator,
   },
+  head () {
+    console.log(this.post);
+    return {
+      title: this.post.fields.title,
+      description: this.post.fields.description,
+      meta: [
+        { hid: 'og:image', property: 'og:image', content: `${this.post.fields.gallery[0].fields.file.url}?fit=fill&w=400&h=300&fm=jpg` },
+        { hid: 'og:image:width', property: 'og:image:width', content: '400' },
+        { hid: 'og:image:height', property: 'og:image:height', content: '300' },
+        { hid: 'og:image:type', property: 'og:image:type', content: 'image/jpeg' },
+      ],
+    };
+  },
   data() {
     return {
       isPageLoaded: false,
@@ -47,7 +60,7 @@ export default {
     // available in prod (nuxt start), so fallback to recreating
     // the request for dev.
     if (payload) return payload;
-    else return Promise.all([
+    else return Promise.allSettled([
       client.getEntries({
         'content_type': $config.postTypeID,
         'fields.slug': params.slug,
@@ -58,11 +71,11 @@ export default {
     ])
       .then(([ posts, globals ]) => {
         return {
-          post: posts.items[0] || null,
-          global: globals.items[0] || null,
+          post: posts.value?.items?.length ? posts.value.items[0] : null,
+          global: globals.value?.items?.length ? globals.value.items[0] : null,
         }
       })
-      .catch(console.error);
+      .catch(() => {});
   },
   mounted() {
     const isGreaterThanViewport = this.$refs.textContent.$el.clientHeight > window.innerHeight;
@@ -70,10 +83,11 @@ export default {
   },
   methods: {
     enter: function (el) {
-			TweenMax.from(el, 1, {
+			gsap.from(el, {
+        duration: 0.2,
         opacity: 0,
         display: 'none',
-        ease:Power3.easeOut,
+        ease: Power3.easeOut,
         delay: 0,
 				onComplete: () => this.isPageLoaded = true,
       });
@@ -114,6 +128,10 @@ export default {
 		max-width: 800px;
 		margin: 0 auto;
 		z-index: 10;
+
+    @include query(small) {
+      top: -10vh;
+    }
 	}
 }
 </style>

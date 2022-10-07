@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import TweenMax from 'gsap';
+  import { gsap, Power3 } from 'gsap';
   import moment from 'moment';
 
   export default {
@@ -63,14 +63,16 @@
         new SplitText(el, { type: "lines", linesClass: parentClass });
         const splitHeadline = new SplitText(el.querySelectorAll(`.${parentClass}`), { type: "lines" });
 
-        TweenMax.staggerFrom(splitHeadline.lines, 1, {
+        gsap.from(splitHeadline.lines, {
+          duration: 1,
           opacity: 0,
           y: 60,
           ease: Power3.easeOut,
           onComplete: () => {
             splitHeadline.revert();
           },
-        }, 0.2);
+          stagger: 0.2,
+        });
       },
       enterBody: function (el) {
         let stagger = 0.1;
@@ -90,7 +92,8 @@
             this.enterText('.IntroSection-desc', -15);
             this.enterFacts();
           },
-        }, stagger);
+          stagger,
+        });
       },
       enterText: function (selector, translateY) {
         TweenMax.to(selector, 0.3, {

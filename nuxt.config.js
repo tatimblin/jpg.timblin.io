@@ -34,7 +34,7 @@ export default {
   },
   generate: {
     routes () {
-      return Promise.all([
+      return Promise.allSettled([
         contentfulClient.getEntries({
           'content_type': process.env.NUXT_ENV_CTF_POST_TYPE_ID,
           'order': '-fields.order,-fields.date',
@@ -44,12 +44,12 @@ export default {
         }),
       ])
         .then(([ posts, globals ]) => {
-          return posts.items.map((post) => {
+          return posts.value.items.map((post) => {
             return {
               route: `/${post.fields.slug}`,
               payload: {
                 post,
-                global: globals.items[0] ?? {},
+                global: globals?.value?.items[0] ?? {},
               },
             };
           });
