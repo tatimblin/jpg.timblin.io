@@ -37,6 +37,7 @@ export default {
       return Promise.all([
         contentfulClient.getEntries({
           'content_type': process.env.NUXT_ENV_CTF_POST_TYPE_ID,
+          'order': '-fields.order,-fields.date',
         }),
         contentfulClient.getEntries({
           'content_type': 'homepage',
