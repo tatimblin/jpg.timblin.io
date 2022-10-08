@@ -111,10 +111,9 @@ export default {
   }
 
   &-hero,
-  &-group,
-  &-list
+  &-group
   {
-    padding-bottom: 32px;
+    padding-bottom: $spacing;
   }
 
 	&-hero
@@ -125,6 +124,8 @@ export default {
   &-label
   {
     @include brow;
+
+    margin-bottom: $spacing;
   }
 
   &-item
