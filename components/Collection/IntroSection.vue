@@ -79,7 +79,8 @@
 
         const splitSubline = new SplitText(el, { type: "lines" });
 
-        TweenMax.staggerFrom(splitSubline.lines || [], 0.5, {
+        gsap.to(splitSubline.lines || [], {
+          duration: 0.5,
           opacity: 0,
           y: 100,
           ease: Power3.easeOut,
@@ -96,7 +97,8 @@
         });
       },
       enterText: function (selector, translateY) {
-        TweenMax.to(selector, 0.3, {
+        gsap.to(selector, {
+          duration: 0.3,
           opacity: 1,
           x: 0,
           y: translateY,
@@ -104,7 +106,8 @@
         });
       },
       enterFacts: function () {
-        TweenMax.staggerTo('.IntroSection-highlight', 1, {
+        gsap.to('.IntroSection-highlight', {
+          duration: 1,
           opacity: 1,
           y: 0,
           ease: Power3.easeOut,

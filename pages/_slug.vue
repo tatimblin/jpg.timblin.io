@@ -37,7 +37,6 @@ export default {
     ScrollIndicator,
   },
   head () {
-    console.log(this.post);
     return {
       title: this.post.fields.title,
       description: this.post.fields.description,

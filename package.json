@@ -23,7 +23,6 @@
   "devDependencies": {
     "@nuxt/image": "^0.6.1",
     "@nuxtjs/style-resources": "^0.1.2",
-    "emoji-regex": "^10.2.1",
     "glob": "^7.1.4",
     "nodemon": "^2.0.15",
     "sass": "^1.55.0",

@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     hideHeader() {
-      return process.env.NUXT_HIDE_HEADER === 'true';
+      return process.env.NUXT_HIDE_HEADER !== 'true';
     }
   }
 };
