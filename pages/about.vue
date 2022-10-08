@@ -15,6 +15,10 @@
         </a>
       </div>
       
+      <div class="Main-group Main-body">
+        <rich-text-renderer :document="about" />
+      </div>
+
       <div class="Main-group">
         <render-pdf v-if="resume" :asset="resume" />
       </div>
@@ -23,6 +27,7 @@
 </template>
 
 <script>
+import RichTextRenderer from 'contentful-rich-text-vue-renderer';
 import RenderPdf from '../components/RenderPDF';
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient();
@@ -31,6 +36,7 @@ export default {
   layout: 'default',
   components: {
     RenderPdf,
+    RichTextRenderer,
   },
   head () {
     return {
@@ -44,6 +50,7 @@ export default {
       hero: '',
       resume: '',
       website: '',
+      about: {},
     };
   },
   mounted () {
@@ -54,6 +61,7 @@ export default {
       'content_type': 'homepage',
     })
       .then((entries) => {
+        console.log(entries.items[0].fields);
         return entries.items[0].fields;
       })
       .catch(() => {});
@@ -93,6 +101,10 @@ export default {
 
     display: block;
     margin-bottom: $spacing;
+  }
+
+  &-body {
+    @include body;
   }
 }
 </style>

@@ -15,6 +15,7 @@
   transform: translateX(-50%);
   opacity: 0;
   animation: fade-in 1s 2500ms 1 ease-out forwards;
+  z-index: 20;
 
   &-mouse {
     color: transparent;
