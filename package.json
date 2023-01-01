@@ -18,7 +18,7 @@
     "contentful-rich-text-vue-renderer": "^2.1.0",
     "gsap": "^3.10.4",
     "moment": "^2.29.4",
-    "nuxt": "^2.13.3",
+    "nuxt": "^3.0.0",
     "sass": "^1.51.0"
   },
   "devDependencies": {
