@@ -72,6 +72,12 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate
+        env:
+          NUXT_ENV_CTF_CDA_ACCESS_TOKEN: ${{ secrets.NUXT_ENV_CTF_CDA_ACCESS_TOKEN }}
+          NUXT_ENV_CTF_CMA_ACCESS_TOKEN: ${{ secrets.NUXT_ENV_CTF_CMA_ACCESS_TOKEN }}
+          NUXT_ENV_CTF_PERSON_ID: ${{ secrets.NUXT_ENV_CTF_PERSON_ID }}
+          NUXT_ENV_CTF_POST_TYPE_ID: ${{ secrets.NUXT_ENV_CTF_POST_TYPE_ID }}
+          NUXT_ENV_CTF_SPACE_ID: ${{ secrets.NUXT_ENV_CTF_SPACE_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
